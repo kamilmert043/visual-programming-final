@@ -56,6 +56,7 @@
             // 
             // dataListProduct
             // 
+            this.dataListProduct.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataListProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataListProduct.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataListProduct.Location = new System.Drawing.Point(0, 0);
@@ -97,6 +98,7 @@
             this.txtProductQuantity.Name = "txtProductQuantity";
             this.txtProductQuantity.Size = new System.Drawing.Size(187, 20);
             this.txtProductQuantity.TabIndex = 19;
+            this.txtProductQuantity.TextChanged += new System.EventHandler(this.txtProductQuantity_TextChanged);
             // 
             // label6
             // 
@@ -113,6 +115,7 @@
             this.txtProductSalePrice.Name = "txtProductSalePrice";
             this.txtProductSalePrice.Size = new System.Drawing.Size(187, 20);
             this.txtProductSalePrice.TabIndex = 25;
+            this.txtProductSalePrice.TextChanged += new System.EventHandler(this.txtProductSalePrice_TextChanged);
             // 
             // txtProductTax
             // 
@@ -120,6 +123,7 @@
             this.txtProductTax.Name = "txtProductTax";
             this.txtProductTax.Size = new System.Drawing.Size(187, 20);
             this.txtProductTax.TabIndex = 26;
+            this.txtProductTax.TextChanged += new System.EventHandler(this.txtProductTax_TextChanged);
             // 
             // txtProductPurchasePrice
             // 
@@ -127,6 +131,7 @@
             this.txtProductPurchasePrice.Name = "txtProductPurchasePrice";
             this.txtProductPurchasePrice.Size = new System.Drawing.Size(187, 20);
             this.txtProductPurchasePrice.TabIndex = 21;
+            this.txtProductPurchasePrice.TextChanged += new System.EventHandler(this.txtProductPurchasePrice_TextChanged);
             // 
             // dateProductPurchaseDate
             // 
@@ -198,6 +203,7 @@
             this.button2.TabIndex = 30;
             this.button2.Text = "Sil";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 

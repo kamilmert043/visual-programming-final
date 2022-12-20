@@ -16,28 +16,6 @@ namespace satisOtomasyonu.classes
         MySqlConnection connection = new MySqlConnection(database.connection);
 
         
-        string name;    
-        string surname;
-        string phone;
-        string username;
-        string password;
-        string mail;
-        string image;
-        string rank;
-
-        public string Name
-        { get
-            { return name; }
-            set
-            { name = value; }
-        }
-        public string Surname { get => surname; set => surname = value; }
-        public string Phone { get => phone; set => phone = value; }
-        public string Username { get => username; set => username = value; }
-        public string Password { get => password; set => password = value; }
-        public string Mail { get => mail; set => mail = value; }
-        public string Image { get => image; set => image = value; }
-        public string Rank { get => rank; set => rank = value; }
 
         public void userLogin(TextBox usernameTxt, TextBox passTxt)
         {
@@ -70,21 +48,13 @@ namespace satisOtomasyonu.classes
 
         }
 
-        public void newUser(string _name, string _surname, string _username, string _password, string _rePassword, string _mail, string _phone, string _rank, string _image)
+        public void newUser(string name, string surname, string username, string password, string rePassword, string mail, string phone, string rank)
         {
 
-            name = _name;
-            surname = _surname;
-            username = _username;
-            password = _password;
-            mail = _mail;
-            phone = _phone;
-            rank = _rank;
-            image = _image;
+
             Cryptology cryptology = new Cryptology();
-            string encryptedText = cryptology.Encryption(_password);
-            //MySqlCommand command = new MySqlCommand("insert into users (name, surname, username, password, mail, phone, rank, image) values (" + @name + ",'" + @surname + "','" + @username + "','" + @encryptedText + "','" + @mail + "','" + @phone + "','" + @rank + "','" + @image + "')", connection);
-            MySqlCommand command = new MySqlCommand("insert into users (name, surname, username, password, mail, phone, rank, image) values (@name, @surname, @username, @password, @mail, @phone, @rank, @image)", connection);
+            string encryptedText = cryptology.Encryption(password);
+            MySqlCommand command = new MySqlCommand("insert into users (name, surname, username, password, mail, phone, rank, ) values (@name, @surname, @username, @password, @mail, @phone, @rank)", connection);
             command.Parameters.AddWithValue("@name", name);
             command.Parameters.AddWithValue("@surname", surname);
             command.Parameters.AddWithValue("@username", username);
@@ -92,13 +62,12 @@ namespace satisOtomasyonu.classes
             command.Parameters.AddWithValue("@mail", mail);
             command.Parameters.AddWithValue("@phone", phone);
             command.Parameters.AddWithValue("@rank", rank);
-            command.Parameters.AddWithValue("@image", image);
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
             MessageBox.Show("Yeni Kullanıcı Eklendi", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        public void listUsers(DataGridView data, ListBox listPass)
+        public void loadUsers(DataGridView data, ListBox listPass)
         {
             listPass.Items.Clear();
             Cryptology cryptology = new Cryptology();
@@ -146,14 +115,6 @@ namespace satisOtomasyonu.classes
             da.Fill(dt);
             data.DataSource = dt;
             connection.Close();
-            data.Columns[0].Visible = false;
-            data.Columns[1].HeaderText = "Ad";
-            data.Columns[2].HeaderText = "Soyad";
-            data.Columns[3].HeaderText = "Kullanıcı Adı";
-            data.Columns[4].HeaderText = "Şifre";
-            data.Columns[5].HeaderText = "E-Mail";
-            data.Columns[6].HeaderText = "Telefon Numarası";
-            data.Columns[7].HeaderText = "Pozisyon";
             connection.Open();
             MySqlCommand command = new MySqlCommand("SELECT * FROM users WHERE name LIKE CONCAT(@name, '%')", connection);
             command.Parameters.AddWithValue("@name", searchString.Text);
@@ -170,6 +131,63 @@ namespace satisOtomasyonu.classes
             {
                 data.Rows[i].Cells[4].Value = listPass.Items[i];
             }
+            
+        }
+
+        public void listSelectedUser(DataGridView data, TextBox name, TextBox surname, TextBox username, TextBox password, TextBox mail, TextBox phone, TextBox rank)
+        {
+            
+            name.Text = data.CurrentRow.Cells[1].Value.ToString();
+            surname.Text = data.CurrentRow.Cells[2].Value.ToString();
+            username.Text = data.CurrentRow.Cells[3].Value.ToString();
+            password.Text = data.CurrentRow.Cells[4].Value.ToString();
+            mail.Text = data.CurrentRow.Cells[5].Value.ToString();
+            phone.Text = data.CurrentRow.Cells[6].Value.ToString();
+            rank.Text = data.CurrentRow.Cells[7].Value.ToString();
+        }
+
+        public void updateUser(DataGridView data, TextBox name, TextBox surname, TextBox username, TextBox password, TextBox mail, TextBox phone, TextBox rank)
+        {
+            int selRow = Convert.ToInt32((data.CurrentRow.Cells[0].Value));
+            Cryptology cryptology = new Cryptology();
+            MySqlCommand command = new MySqlCommand("UPDATE users SET name = @name, surname = @surname, username = @username, password = @password, mail = @mail, phone = @phone, rank = @rank where id = @row", connection);
+            command.Parameters.AddWithValue("@name", name.Text);
+            command.Parameters.AddWithValue("@surname", surname.Text);
+            command.Parameters.AddWithValue("@username", username.Text);
+            string encryptedText = "";
+            encryptedText = cryptology.Encryption(password.Text);
+            command.Parameters.AddWithValue("@password", encryptedText);
+            command.Parameters.AddWithValue("@mail", mail.Text);
+            command.Parameters.AddWithValue("@phone", phone.Text);
+            command.Parameters.AddWithValue("@rank", rank.Text);
+            command.Parameters.AddWithValue("@row", selRow);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+            MessageBox.Show("Kullanıcı Başarıyla Güncellendi", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            name.Text = "";
+            surname.Text = "";
+            username.Text = "";
+            password.Text = "";
+            mail.Text = "";
+            phone.Text = "";
+            rank.Text = "";
+
+        }
+
+        public void dropUser(DataGridView data)
+        {
+            DialogResult status = MessageBox.Show("Seçili Kayıtı Silmek İstediğinizden Emin Misiniz?", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+            if (DialogResult.Yes == status)
+            {
+                int selRow = Convert.ToInt32((data.CurrentRow.Cells[0].Value));
+                MySqlCommand command = new MySqlCommand("delete from users where id = @srow", connection);
+                command.Parameters.AddWithValue("@srow", selRow);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+                MessageBox.Show("Ürün Başarıyla Silindi", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } 
         }
     }
     }

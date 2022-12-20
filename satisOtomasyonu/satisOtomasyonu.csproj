@@ -52,6 +52,7 @@
     <Compile Include="classes\users.cs" />
     <Compile Include="classes\Cryptology.cs" />
     <Compile Include="classes\database.cs" />
+    <Compile Include="classes\customers.cs" />
     <Compile Include="forms\frmAddProductGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +64,18 @@
     </Compile>
     <Compile Include="forms\frmAddProduct.Designer.cs">
       <DependentUpon>frmAddProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmListCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmListCustomers.Designer.cs">
+      <DependentUpon>frmListCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmListProductGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmListProductGroup.Designer.cs">
+      <DependentUpon>frmListProductGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\frmLogin.cs">
       <SubType>Form</SubType>
@@ -95,21 +108,28 @@
     <Compile Include="forms\frmListUsers.Designer.cs">
       <DependentUpon>frmListUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmAddCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmAddCustomers.Designer.cs">
+      <DependentUpon>frmAddCustomers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="salesAutomationDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>salesAutomationDataSet.xsd</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="forms\frmAddProduct.resx">
       <DependentUpon>frmAddProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmAddProductGroup.resx">
       <DependentUpon>frmAddProductGroup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmListCustomers.resx">
+      <DependentUpon>frmListCustomers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmListProduct.resx">
       <DependentUpon>frmListProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmListProductGroup.resx">
+      <DependentUpon>frmListProductGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmListUsers.resx">
       <DependentUpon>frmListUsers.cs</DependentUpon>
@@ -122,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmRegister.resx">
       <DependentUpon>frmRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmAddCustomers.resx">
+      <DependentUpon>frmAddCustomers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -142,17 +165,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="salesAutomationDataSet.xsc">
-      <DependentUpon>salesAutomationDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="salesAutomationDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>salesAutomationDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="salesAutomationDataSet.xss">
-      <DependentUpon>salesAutomationDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

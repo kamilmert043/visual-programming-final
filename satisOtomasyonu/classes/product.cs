@@ -121,27 +121,27 @@ namespace satisOtomasyonu
             if (true)
             {
 
-            
-            connection.Open();
-            MySqlCommand command = new MySqlCommand("Select pName from products_name", connection);
-            MySqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                productName.Items.Add(reader.GetString("pName"));
-            }
-            connection.Close();
+
+                connection.Open();
+                MySqlCommand command = new MySqlCommand("Select pName from products_name", connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    productName.Items.Add(reader.GetString("pName"));
+                }
+                connection.Close();
             }
             connection.Open();
             if (true)
             {
 
-            
-            MySqlCommand command = new MySqlCommand("Select productType from products_type", connection);
-            MySqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                productType.Items.Add(reader.GetString("productType"));
-            }
+
+                MySqlCommand command = new MySqlCommand("Select productType from products_type", connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    productType.Items.Add(reader.GetString("productType"));
+                }
             }
             connection.Close();
             productName.SelectedItem = data.CurrentRow.Cells[1].Value.ToString();
@@ -161,7 +161,7 @@ namespace satisOtomasyonu
             MySqlCommand command = new MySqlCommand("UPDATE products SET productName = @name, productType = @type, productQuantity = @quantity, productPurchasePrice = @purchasePrice, productPurchaseDate = @purchaseDate, productSalePrice = @salePrice, productTax = @tax where id = @row", connection);
             command.Parameters.AddWithValue("@name", productName.SelectedItem.ToString());
             command.Parameters.AddWithValue("@type", productType.SelectedItem.ToString());
-            command.Parameters.AddWithValue("@quantity", int.Parse(productQuantity.Text));
+            command.Parameters.AddWithValue("@quantity",Convert.ToDouble(productQuantity.Text));
             command.Parameters.AddWithValue("@purchasePrice", int.Parse(productPurchasePrice.Text));
             command.Parameters.AddWithValue("@purchaseDate", productPurchaseDate.Value);
             command.Parameters.AddWithValue("@salePrice", int.Parse(productSalePrice.Text));
@@ -189,6 +189,63 @@ namespace satisOtomasyonu
             data.Columns[5].HeaderText = "Ürün Alım Tarihi";
             data.Columns[6].HeaderText = "Ürün Satış Fiyatı";
             data.Columns[7].HeaderText = "Vergi Oranı(%)";
+        }
+
+        public void dropProduct(DataGridView data)
+        {
+            DialogResult status = MessageBox.Show("Seçili Kayıtı Silmek İstediğinizden Emin Misiniz?", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+            if (DialogResult.Yes == status)
+            {
+                int selRow = Convert.ToInt32((data.CurrentRow.Cells[0].Value));
+                MySqlCommand command = new MySqlCommand("delete from products where id = @srow", connection);
+                command.Parameters.AddWithValue("@srow", selRow);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+                MessageBox.Show("Ürün Başarıyla Silindi", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+        public void UpdateProudctType(DataGridView data,ComboBox productType)
+        {
+            if (true)
+            {
+                connection.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter("Select pname from products_name", connection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                data.DataSource = dt;
+                connection.Close();
+            }
+
+            if (true)
+            {
+                connection.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter("Select productType from products_type", connection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                data.DataSource = dt;
+                connection.Close();
+            }
+
+            /*data.Columns[0].Visible = false;
+            data.Columns[1].HeaderText = "Ürün İsmi";
+            data.Columns[2].HeaderText = "Ürün Cinsi";
+            data.Columns[3].HeaderText = "Ürün Miktarı";
+            data.Columns[4].HeaderText = "Ürün Alış Fiyatı";
+            data.Columns[5].HeaderText = "Ürün Alım Tarihi";
+            data.Columns[6].HeaderText = "Ürün Satış Fiyatı";
+            data.Columns[7].HeaderText = "Vergi Oranı(%)";*/
+
+            /*connection.Open();
+            MySqlCommand command = new MySqlCommand("Select productType from products_type", connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                productType.Items.Add(reader.GetString("productType"));
+            }
+            connection.Close();*/
         }
     }
 }

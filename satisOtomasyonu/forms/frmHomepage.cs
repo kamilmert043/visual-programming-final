@@ -67,5 +67,23 @@ namespace satisOtomasyonu
             frmListUsers listUsers = new frmListUsers();
             getForm(listUsers);
         }
+
+        private void btnAddCostumers_Click(object sender, EventArgs e)
+        {
+            frmAddCustomers addCustomers = new frmAddCustomers();
+            getForm(addCustomers);
+        }
+
+        private void btnListCustomers_Click(object sender, EventArgs e)
+        {
+            frmListCustomers listCustomers = new frmListCustomers();
+            getForm(listCustomers);
+        }
+
+        private void btnListProductGroup_Click(object sender, EventArgs e)
+        {
+            frmListProductGroup listProductGroup = new frmListProductGroup();
+            getForm(listProductGroup);
+        }
     }
 }

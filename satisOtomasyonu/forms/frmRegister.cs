@@ -92,7 +92,7 @@ namespace satisOtomasyonu
             if (hata != 1)
             {
                 classes.users register = new classes.users();
-                register.newUser(txtName.Text, txtSurname.Text, txtUsername.Text, txtPassword.Text, txtRepassword.Text, txtMail.Text, txtPhone.Text, txtRank.Text, pbImage.ImageLocation);
+                register.newUser(txtName.Text, txtSurname.Text, txtUsername.Text, txtPassword.Text, txtRepassword.Text, txtMail.Text, txtPhone.Text, txtRank.Text);
             }
 
         }
@@ -130,17 +130,6 @@ namespace satisOtomasyonu
         private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
         {
             txtPhone.BackColor = Color.White;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog file = new OpenFileDialog();
-            file.ShowDialog();
-            if (file.ShowDialog()== DialogResult.OK)
-            {
-                pbImage.ImageLocation = file.FileName;
-            }
-
         }
 
         private void button3_Click(object sender, EventArgs e)

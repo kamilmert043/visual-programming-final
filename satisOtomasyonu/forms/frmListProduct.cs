@@ -19,6 +19,9 @@ namespace satisOtomasyonu
         product process = new product();
         private void frmListProduct_Load(object sender, EventArgs e)
         {
+            dataListProduct.AllowUserToAddRows = false;
+            dataListProduct.AllowUserToDeleteRows = false;
+            dataListProduct.ReadOnly = true;
             process.listProduct(dataListProduct);
         }
 
@@ -30,8 +33,41 @@ namespace satisOtomasyonu
 
         private void button1_Click(object sender, EventArgs e)
         {
-            process.updateProduct(dataListProduct, cbProductType, cbProductName, txtProductQuantity, txtProductPurchasePrice, dateProductPurchaseDate, txtProductSalePrice, txtProductTax);
-            process.listProduct(dataListProduct);
+            int error = 0;
+
+            if (string.IsNullOrWhiteSpace(txtProductQuantity.Text))
+            {
+                txtProductQuantity.BackColor = Color.Red;
+                error = 1;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtProductPurchasePrice.Text))
+            {
+                txtProductPurchasePrice.BackColor = Color.Red;
+                error = 1;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtProductSalePrice.Text))
+            {
+                txtProductSalePrice.BackColor = Color.Red;
+                error = 1;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtProductTax.Text))
+            {
+                txtProductTax.BackColor = Color.Red;
+                error = 1;
+            }
+            if (error == 1)
+            {
+                MessageBox.Show("Kırmızı Olan Alanları Doldurunuz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (error == 0)
+            {
+                process.updateProduct(dataListProduct, cbProductType, cbProductName, txtProductQuantity, txtProductPurchasePrice, dateProductPurchaseDate, txtProductSalePrice, txtProductTax);
+                process.listProduct(dataListProduct);
+            }
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -40,6 +76,32 @@ namespace satisOtomasyonu
             /*DataView search = new DataView;
             search.RowFilter = "ismi like '" + textBox1.Text + "%'";
             dataListProduct.DataSource = search;*/
+        }
+
+        private void txtProductQuantity_TextChanged(object sender, EventArgs e)
+        {
+            txtProductQuantity.BackColor = Color.White;
+        }
+
+        private void txtProductPurchasePrice_TextChanged(object sender, EventArgs e)
+        {
+            txtProductPurchasePrice.BackColor = Color.White;
+        }
+
+        private void txtProductSalePrice_TextChanged(object sender, EventArgs e)
+        {
+            txtProductSalePrice.BackColor = Color.White;
+        }
+
+        private void txtProductTax_TextChanged(object sender, EventArgs e)
+        {
+            txtProductTax.BackColor = Color.White;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            process.dropProduct(dataListProduct);
+            process.listProduct(dataListProduct);
         }
     }
 }

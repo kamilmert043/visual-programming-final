@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnListProductGroup = new System.Windows.Forms.Button();
             this.btnAddProductGroup = new System.Windows.Forms.Button();
             this.btnListSales = new System.Windows.Forms.Button();
             this.btnSaleOrder = new System.Windows.Forms.Button();
@@ -44,6 +45,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnListProductGroup);
             this.panel1.Controls.Add(this.btnAddProductGroup);
             this.panel1.Controls.Add(this.btnListSales);
             this.panel1.Controls.Add(this.btnSaleOrder);
@@ -58,6 +60,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(957, 187);
             this.panel1.TabIndex = 0;
+            // 
+            // btnListProductGroup
+            // 
+            this.btnListProductGroup.Location = new System.Drawing.Point(125, 79);
+            this.btnListProductGroup.Name = "btnListProductGroup";
+            this.btnListProductGroup.Size = new System.Drawing.Size(106, 55);
+            this.btnListProductGroup.TabIndex = 10;
+            this.btnListProductGroup.Text = "Ürün Grubu Ekle";
+            this.btnListProductGroup.UseVisualStyleBackColor = true;
+            this.btnListProductGroup.Click += new System.EventHandler(this.btnListProductGroup_Click);
             // 
             // btnAddProductGroup
             // 
@@ -93,8 +105,9 @@
             this.btnListCustomers.Name = "btnListCustomers";
             this.btnListCustomers.Size = new System.Drawing.Size(106, 55);
             this.btnListCustomers.TabIndex = 6;
-            this.btnListCustomers.Text = "Müşteri Listele";
+            this.btnListCustomers.Text = "Müşteri Güncelle";
             this.btnListCustomers.UseVisualStyleBackColor = true;
+            this.btnListCustomers.Click += new System.EventHandler(this.btnListCustomers_Click);
             // 
             // btnAddCostumers
             // 
@@ -104,6 +117,7 @@
             this.btnAddCostumers.TabIndex = 5;
             this.btnAddCostumers.Text = "Müşteri Ekle";
             this.btnAddCostumers.UseVisualStyleBackColor = true;
+            this.btnAddCostumers.Click += new System.EventHandler(this.btnAddCostumers_Click);
             // 
             // btnListUser
             // 
@@ -111,7 +125,7 @@
             this.btnListUser.Name = "btnListUser";
             this.btnListUser.Size = new System.Drawing.Size(106, 55);
             this.btnListUser.TabIndex = 4;
-            this.btnListUser.Text = "Kullanıcı Listele";
+            this.btnListUser.Text = "Kullanıcı Güncelle";
             this.btnListUser.UseVisualStyleBackColor = true;
             this.btnListUser.Click += new System.EventHandler(this.btnListUser_Click);
             // 
@@ -131,7 +145,7 @@
             this.btnListProduct.Name = "btnListProduct";
             this.btnListProduct.Size = new System.Drawing.Size(106, 55);
             this.btnListProduct.TabIndex = 1;
-            this.btnListProduct.Text = "Ürün Listele";
+            this.btnListProduct.Text = "Ürün Güncelle";
             this.btnListProduct.UseVisualStyleBackColor = true;
             this.btnListProduct.Click += new System.EventHandler(this.btnListProduct_Click);
             // 
@@ -184,6 +198,7 @@
         private System.Windows.Forms.Button btnAddProduct;
         private System.Windows.Forms.Panel panelPages;
         private System.Windows.Forms.Button btnAddProductGroup;
+        private System.Windows.Forms.Button btnListProductGroup;
     }
 }
 
