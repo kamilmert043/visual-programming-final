@@ -67,7 +67,7 @@
             this.btnListProductGroup.Name = "btnListProductGroup";
             this.btnListProductGroup.Size = new System.Drawing.Size(106, 55);
             this.btnListProductGroup.TabIndex = 10;
-            this.btnListProductGroup.Text = "Ürün Grubu Ekle";
+            this.btnListProductGroup.Text = "Ürün Grubu Güncelle";
             this.btnListProductGroup.UseVisualStyleBackColor = true;
             this.btnListProductGroup.Click += new System.EventHandler(this.btnListProductGroup_Click);
             // 
@@ -89,6 +89,7 @@
             this.btnListSales.TabIndex = 8;
             this.btnListSales.Text = "Satışları Listele";
             this.btnListSales.UseVisualStyleBackColor = true;
+            this.btnListSales.Click += new System.EventHandler(this.btnListSales_Click);
             // 
             // btnSaleOrder
             // 
@@ -98,6 +99,7 @@
             this.btnSaleOrder.TabIndex = 7;
             this.btnSaleOrder.Text = "Satış Yap";
             this.btnSaleOrder.UseVisualStyleBackColor = true;
+            this.btnSaleOrder.Click += new System.EventHandler(this.btnSaleOrder_Click);
             // 
             // btnListCustomers
             // 
@@ -164,7 +166,7 @@
             this.panelPages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPages.Location = new System.Drawing.Point(0, 187);
             this.panelPages.Name = "panelPages";
-            this.panelPages.Size = new System.Drawing.Size(957, 391);
+            this.panelPages.Size = new System.Drawing.Size(957, 462);
             this.panelPages.TabIndex = 2;
             // 
             // frmHomepage
@@ -172,7 +174,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSalmon;
-            this.ClientSize = new System.Drawing.Size(957, 578);
+            this.ClientSize = new System.Drawing.Size(957, 649);
             this.Controls.Add(this.panelPages);
             this.Controls.Add(this.panel1);
             this.IsMdiContainer = true;

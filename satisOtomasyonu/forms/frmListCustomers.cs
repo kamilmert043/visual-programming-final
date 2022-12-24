@@ -93,5 +93,12 @@ namespace satisOtomasyonu.forms
         {
             txtPhone.BackColor = Color.White;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            process.dropCustomer(dataListCustomers);
+            process.loadCustomers(dataListCustomers);
+            
+        }
     }
 }

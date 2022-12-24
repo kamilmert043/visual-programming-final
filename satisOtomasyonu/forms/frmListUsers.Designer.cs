@@ -73,7 +73,7 @@
             this.dataListUsers.Name = "dataListUsers";
             this.dataListUsers.Size = new System.Drawing.Size(957, 238);
             this.dataListUsers.TabIndex = 0;
-            this.dataListUsers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dataListUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListUsers_CellClick);
             // 
             // txtRank
             // 

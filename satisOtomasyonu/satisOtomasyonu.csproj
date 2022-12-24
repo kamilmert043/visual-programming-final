@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\cart.cs" />
     <Compile Include="classes\users.cs" />
     <Compile Include="classes\Cryptology.cs" />
     <Compile Include="classes\database.cs" />
@@ -88,6 +89,12 @@
     </Compile>
     <Compile Include="forms\frmHomepage.Designer.cs">
       <DependentUpon>frmHomepage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmProductSale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmProductSale.Designer.cs">
+      <DependentUpon>frmProductSale.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\frmRegister.cs">
       <SubType>Form</SubType>
@@ -139,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmHomepage.resx">
       <DependentUpon>frmHomepage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmProductSale.resx">
+      <DependentUpon>frmProductSale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmRegister.resx">
       <DependentUpon>frmRegister.cs</DependentUpon>

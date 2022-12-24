@@ -83,24 +83,31 @@ namespace satisOtomasyonu
         }
         public void addProduct(ComboBox productType, ComboBox productName, TextBox productQuantity, TextBox productPurchasePrice, DateTimePicker productPurchaseDate, TextBox productSalePrice, TextBox productTax)
         {
-            string query = "INSERT INTO products (productName, productType, productQuantity, productPurchasePrice, productPurchaseDate, productSalePrice, productTax) values(@name, @type, @quantity, @purchasePrice, @purchaseDate, @salePrice, @tax)";
+            string query = "INSERT INTO productss (productName, productType, productQuantity, productPurchasePrice, productPurchaseDate, productSalePrice, productTax) values(@name, @type, @quantity, @purchasePrice, @purchaseDate, @salePrice, @tax)";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@name", productName.SelectedItem.ToString());
             command.Parameters.AddWithValue("@type", productType.SelectedItem.ToString());
-            command.Parameters.AddWithValue("@quantity", int.Parse(productQuantity.Text));
-            command.Parameters.AddWithValue("@purchasePrice", int.Parse(productPurchasePrice.Text));
+            command.Parameters.AddWithValue("@quantity", Double.Parse(productQuantity.Text));
+            command.Parameters.AddWithValue("@purchasePrice", Double.Parse(productPurchasePrice.Text));
             command.Parameters.AddWithValue("@purchaseDate", productPurchaseDate.Value);
-            command.Parameters.AddWithValue("@salePrice", int.Parse(productSalePrice.Text));
+            command.Parameters.AddWithValue("@salePrice", Double.Parse(productSalePrice.Text));
             command.Parameters.AddWithValue("@tax", int.Parse(productTax.Text));
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
+            MessageBox.Show("Ürün Başarıyla Eklendi", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            productQuantity.Text = "";
+            productPurchasePrice.Text = "";
+            productSalePrice.Text = "";
+            productTax.Text = "";
+            productType.SelectedIndex = -1;
+            productName.Items.Clear();
         }
 
         public void listProduct(DataGridView data)
         {
             connection.Open();
-            MySqlDataAdapter da = new MySqlDataAdapter("Select id, productName, productType, productQuantity, productPurchasePrice, productPurchaseDate, productSalePrice, productTax from products", connection);
+            MySqlDataAdapter da = new MySqlDataAdapter("Select id, productName, productType, productQuantity, productPurchasePrice, productPurchaseDate, productSalePrice, productTax from productss", connection);
             DataTable dt = new DataTable();
             da.Fill(dt);
             data.DataSource = dt;
@@ -158,13 +165,13 @@ namespace satisOtomasyonu
         {
             int selRow = Convert.ToInt32((data.CurrentRow.Cells[0].Value));
 
-            MySqlCommand command = new MySqlCommand("UPDATE products SET productName = @name, productType = @type, productQuantity = @quantity, productPurchasePrice = @purchasePrice, productPurchaseDate = @purchaseDate, productSalePrice = @salePrice, productTax = @tax where id = @row", connection);
+            MySqlCommand command = new MySqlCommand("UPDATE productss SET productName = @name, productType = @type, productQuantity = @quantity, productPurchasePrice = @purchasePrice, productPurchaseDate = @purchaseDate, productSalePrice = @salePrice, productTax = @tax where id = @row", connection);
             command.Parameters.AddWithValue("@name", productName.SelectedItem.ToString());
             command.Parameters.AddWithValue("@type", productType.SelectedItem.ToString());
             command.Parameters.AddWithValue("@quantity",Convert.ToDouble(productQuantity.Text));
-            command.Parameters.AddWithValue("@purchasePrice", int.Parse(productPurchasePrice.Text));
+            command.Parameters.AddWithValue("@purchasePrice", Double.Parse(productPurchasePrice.Text));
             command.Parameters.AddWithValue("@purchaseDate", productPurchaseDate.Value);
-            command.Parameters.AddWithValue("@salePrice", int.Parse(productSalePrice.Text));
+            command.Parameters.AddWithValue("@salePrice", Double.Parse(productSalePrice.Text));
             command.Parameters.AddWithValue("@tax", int.Parse(productTax.Text));
             command.Parameters.AddWithValue("@row", selRow);
             connection.Open();
@@ -175,7 +182,7 @@ namespace satisOtomasyonu
         public void searchProduct(DataGridView data, TextBox searchString)
         {
             connection.Open();
-            MySqlDataAdapter da = new MySqlDataAdapter("SELECT id, productName, productType, productQuantity, productPurchasePrice, productPurchaseDate, productSalePrice, productTax FROM products WHERE productName LIKE CONCAT(@name, '%')", connection);
+            MySqlDataAdapter da = new MySqlDataAdapter("SELECT id, productName, productType, productQuantity, productPurchasePrice, productPurchaseDate, productSalePrice, productTax FROM productss WHERE productName LIKE CONCAT(@name, '%')", connection);
             da.SelectCommand.Parameters.AddWithValue("@name", searchString.Text);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -197,7 +204,7 @@ namespace satisOtomasyonu
             if (DialogResult.Yes == status)
             {
                 int selRow = Convert.ToInt32((data.CurrentRow.Cells[0].Value));
-                MySqlCommand command = new MySqlCommand("delete from products where id = @srow", connection);
+                MySqlCommand command = new MySqlCommand("delete from productss where id = @srow", connection);
                 command.Parameters.AddWithValue("@srow", selRow);
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -229,23 +236,9 @@ namespace satisOtomasyonu
                 connection.Close();
             }
 
-            /*data.Columns[0].Visible = false;
-            data.Columns[1].HeaderText = "Ürün İsmi";
-            data.Columns[2].HeaderText = "Ürün Cinsi";
-            data.Columns[3].HeaderText = "Ürün Miktarı";
-            data.Columns[4].HeaderText = "Ürün Alış Fiyatı";
-            data.Columns[5].HeaderText = "Ürün Alım Tarihi";
-            data.Columns[6].HeaderText = "Ürün Satış Fiyatı";
-            data.Columns[7].HeaderText = "Vergi Oranı(%)";*/
-
-            /*connection.Open();
-            MySqlCommand command = new MySqlCommand("Select productType from products_type", connection);
-            MySqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                productType.Items.Add(reader.GetString("productType"));
-            }
-            connection.Close();*/
+          
         }
+
+
     }
 }

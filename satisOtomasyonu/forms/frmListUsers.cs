@@ -34,10 +34,6 @@ namespace satisOtomasyonu
             process.searchUsers(dataListUsers, textBox1, listBox1);
         }
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            process.listSelectedUser(dataListUsers, txtName, txtSurname, txtUsername, txtPassword, txtMail, txtPhone, txtRank);
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -138,5 +134,9 @@ namespace satisOtomasyonu
             txtRank.BackColor = Color.White;
         }
 
+        private void dataListUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            process.listSelectedUser(dataListUsers, txtName, txtSurname, txtUsername, txtPassword, txtMail, txtPhone, txtRank);
+        }
     }
 }

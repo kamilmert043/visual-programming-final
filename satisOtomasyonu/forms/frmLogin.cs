@@ -16,10 +16,11 @@ namespace satisOtomasyonu
     public partial class frmLogin : Form
         
     {
-
+        
         public frmLogin()
         {
             InitializeComponent();
+            
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -30,7 +31,9 @@ namespace satisOtomasyonu
         classes.users login = new classes.users();
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            login.userLogin(txtUsername, txtPassword);
+            frmHomepage homepage = new frmHomepage();
+            
+            login.userLogin(txtUsername, txtPassword, homepage);
 
 
         }

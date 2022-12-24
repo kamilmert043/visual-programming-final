@@ -15,15 +15,58 @@ namespace satisOtomasyonu
         MySqlConnection connection = new MySqlConnection(database.connection);
         public void addCustomers(TextBox nameSurname, MaskedTextBox phone, TextBox adress, TextBox mail)
         {
-            MySqlCommand command = new MySqlCommand("insert into customers (nameSurname, phone, adress, mail) values (@nameSurname, @phone, @adress, @mail)", connection);
-            command.Parameters.AddWithValue("@nameSurname", nameSurname.Text);
-            command.Parameters.AddWithValue("@phone", phone.Text);
-            command.Parameters.AddWithValue("@adress", adress.Text);
-            command.Parameters.AddWithValue("@mail", mail.Text);
+            int phoneControl;
             connection.Open();
-            command.ExecuteNonQuery();
+
+            MySqlCommand controlUserNameComannd = new MySqlCommand("SELECT COUNT(username) from users where username = @phone", connection);
+            controlUserNameComannd.Parameters.AddWithValue("@username", phone);
+            phoneControl = int.Parse(controlUserNameComannd.ExecuteScalar().ToString());
             connection.Close();
-            MessageBox.Show("Yeni Müşteri Eklendi", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            int mailControl;
+            connection.Open();
+
+            MySqlCommand controlMailComannd = new MySqlCommand("SELECT COUNT(mail) from users where mail = @mail", connection);
+            controlMailComannd.Parameters.AddWithValue("@mail", mail);
+            mailControl = int.Parse(controlMailComannd.ExecuteScalar().ToString());
+            connection.Close();
+
+            if (phoneControl == 0 && mailControl == 0)
+            {
+                MySqlCommand command = new MySqlCommand("insert into customers (nameSurname, phone, adress, mail) values (@nameSurname, @phone, @adress, @mail)", connection);
+                command.Parameters.AddWithValue("@nameSurname", nameSurname.Text);
+                command.Parameters.AddWithValue("@phone", phone.Text);
+                command.Parameters.AddWithValue("@adress", adress.Text);
+                command.Parameters.AddWithValue("@mail", mail.Text);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+                MessageBox.Show("Yeni Müşteri Eklendi", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+
+                if (phoneControl >= 1 && mailControl >= 1)
+                {
+                    MessageBox.Show("Bu mail adresi ve telefon numarası ile kayıt oluşturulmuş.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+
+                }
+                if (phoneControl >= 1)
+                {
+                    MessageBox.Show("Bu telefon numarası ile kayıt oluşturulmuş.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (mailControl >= 1)
+                {
+                    MessageBox.Show("Bu mail adresi ile kayıt oluşturulmuş.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+            }
+           
         }
 
         public void loadCustomers(DataGridView data)
@@ -78,5 +121,21 @@ namespace satisOtomasyonu
             mail.Text = "";
 
         }
+        public void dropCustomer(DataGridView data)
+        {
+            
+        
+                DialogResult status = MessageBox.Show("Seçili Kayıtı Silmek İstediğinizden Emin Misiniz?", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+                if (DialogResult.Yes == status)
+                {
+                    int selRow = Convert.ToInt32((data.CurrentRow.Cells[0].Value));
+                    MySqlCommand command = new MySqlCommand("delete from customers where id = @srow", connection);
+                    command.Parameters.AddWithValue("@srow", selRow);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                    MessageBox.Show("Müşteri Başarıyla Silindi", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
     }
 }
