@@ -25,13 +25,13 @@ namespace satisOtomasyonu
             dataListUsers.AllowUserToDeleteRows = false;
             dataListUsers.ReadOnly = true;
 
-            process.loadUsers(dataListUsers, listBox1);
+            process.loadUsers(dataListUsers, listBox1, lblCount);
             process.listSelectedUser(dataListUsers, txtName, txtSurname, txtUsername, txtPassword, txtMail, txtPhone, txtRank);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            process.searchUsers(dataListUsers, textBox1, listBox1);
+            process.searchUsers(dataListUsers, textBox1, listBox1, lblCount, txtName, txtSurname, txtUsername, txtPassword, txtMail, txtPhone, txtRank);
         }
 
 
@@ -89,7 +89,7 @@ namespace satisOtomasyonu
             if (error == 0) 
             {
                 process.updateUser(dataListUsers, txtName, txtSurname, txtUsername, txtPassword, txtMail, txtPhone, txtRank);
-                process.loadUsers(dataListUsers, listBox1);
+                process.loadUsers(dataListUsers, listBox1, lblCount);
             }
 
         }
@@ -97,7 +97,7 @@ namespace satisOtomasyonu
         private void button2_Click(object sender, EventArgs e)
         {
             process.dropUser(dataListUsers);
-            process.loadUsers(dataListUsers, listBox1);
+            process.loadUsers(dataListUsers, listBox1, lblCount);
         }
         private void txtName_TextChanged(object sender, EventArgs e)
         {

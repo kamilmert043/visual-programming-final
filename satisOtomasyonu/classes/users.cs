@@ -140,7 +140,7 @@ namespace satisOtomasyonu.classes
                 }
             }
         }
-        public void loadUsers(DataGridView data, ListBox listPass)
+        public void loadUsers(DataGridView data, ListBox listPass, Label count)
         {
             listPass.Items.Clear();
             Cryptology cryptology = new Cryptology();
@@ -165,7 +165,7 @@ namespace satisOtomasyonu.classes
             {
                    
                 string decryptedText = "";
-                decryptedText = cryptology.Decrypt(reader.GetString("password"));
+                decryptedText = cryptology.Encryption(reader.GetString("password"));
                 listPass.Items.Add(decryptedText);
                 
 
@@ -175,9 +175,10 @@ namespace satisOtomasyonu.classes
             {
                 data.Rows[i].Cells[4].Value = listPass.Items[i];
             }
+            count.Text = "Toplam Kayıt Sayısı:" + (data.Rows.Count);
         }
 
-        public void searchUsers(DataGridView data, TextBox searchString, ListBox listPass)
+        public void searchUsers(DataGridView data, TextBox searchString, ListBox listPass, Label count, TextBox name, TextBox surname, TextBox username, TextBox password, TextBox mail, TextBox phone, TextBox rank)
         {
             listPass.Items.Clear();
             Cryptology cryptology = new Cryptology();
@@ -204,7 +205,19 @@ namespace satisOtomasyonu.classes
             {
                 data.Rows[i].Cells[4].Value = listPass.Items[i];
             }
-            
+            count.Text = "Toplam Kayıt Sayısı:" + (data.Rows.Count);
+            if (data.Rows.Count != 0)
+            {
+                name.Text = data.CurrentRow.Cells[1].Value.ToString();
+                surname.Text = data.CurrentRow.Cells[2].Value.ToString();
+                username.Text = data.CurrentRow.Cells[3].Value.ToString();
+                password.Text = data.CurrentRow.Cells[4].Value.ToString();
+                mail.Text = data.CurrentRow.Cells[5].Value.ToString();
+                phone.Text = data.CurrentRow.Cells[6].Value.ToString();
+                rank.Text = data.CurrentRow.Cells[7].Value.ToString();
+            }
+
+
         }
 
         public void listSelectedUser(DataGridView data, TextBox name, TextBox surname, TextBox username, TextBox password, TextBox mail, TextBox phone, TextBox rank)

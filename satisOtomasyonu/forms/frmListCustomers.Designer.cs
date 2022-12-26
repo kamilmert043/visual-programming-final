@@ -30,7 +30,6 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataListCustomers = new System.Windows.Forms.DataGridView();
-            this.label9 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -44,6 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.MaskedTextBox();
+            this.lblCount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListCustomers)).BeginInit();
             this.SuspendLayout();
@@ -66,16 +66,7 @@
             this.dataListCustomers.Name = "dataListCustomers";
             this.dataListCustomers.Size = new System.Drawing.Size(957, 238);
             this.dataListCustomers.TabIndex = 0;
-            this.dataListCustomers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListCustomers_CellDoubleClick);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(669, 299);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(101, 13);
-            this.label9.TabIndex = 66;
-            this.label9.Text = "Toplam Kayıt Sayısı:";
+            this.dataListCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListCustomers_CellClick);
             // 
             // txtSearch
             // 
@@ -197,14 +188,25 @@
             this.txtPhone.TabIndex = 1;
             this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             // 
+            // lblCount
+            // 
+            this.lblCount.AutoSize = true;
+            this.lblCount.BackColor = System.Drawing.Color.Red;
+            this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblCount.Location = new System.Drawing.Point(742, 296);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(183, 20);
+            this.lblCount.TabIndex = 67;
+            this.lblCount.Text = "Toplam Kayıt Sayısı: 0";
+            // 
             // frmListCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSalmon;
             this.ClientSize = new System.Drawing.Size(957, 383);
+            this.Controls.Add(this.lblCount);
             this.Controls.Add(this.txtPhone);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.txtNameSurname);
@@ -232,7 +234,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataListCustomers;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button3;
@@ -246,5 +247,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.MaskedTextBox txtPhone;
+        private System.Windows.Forms.Label lblCount;
     }
 }

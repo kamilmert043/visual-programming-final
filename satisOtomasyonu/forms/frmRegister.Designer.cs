@@ -46,12 +46,15 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txtSurname = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(247, 130);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(113, 20);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
@@ -60,6 +63,7 @@
             // 
             this.txtRepassword.Location = new System.Drawing.Point(247, 158);
             this.txtRepassword.Name = "txtRepassword";
+            this.txtRepassword.PasswordChar = '*';
             this.txtRepassword.Size = new System.Drawing.Size(113, 20);
             this.txtRepassword.TabIndex = 4;
             this.txtRepassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRepassword_KeyPress);
@@ -219,12 +223,36 @@
             this.txtSurname.TabIndex = 1;
             this.txtSurname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSurname_KeyPress);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(367, 132);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(57, 17);
+            this.checkBox1.TabIndex = 31;
+            this.checkBox1.Text = "Göster";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(367, 160);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(57, 17);
+            this.checkBox2.TabIndex = 32;
+            this.checkBox2.Text = "Göster";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
             // frmRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSalmon;
             this.ClientSize = new System.Drawing.Size(532, 368);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txtRank);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button3);
@@ -245,6 +273,7 @@
             this.Controls.Add(this.label5);
             this.Name = "frmRegister";
             this.Text = "frmRegister";
+            this.Load += new System.EventHandler(this.frmRegister_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,5 +299,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox txtRank;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

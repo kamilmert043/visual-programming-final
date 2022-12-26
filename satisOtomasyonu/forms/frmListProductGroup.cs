@@ -19,7 +19,7 @@ namespace satisOtomasyonu.forms
         product process = new product();
         private void frmListProductGroup_Load(object sender, EventArgs e)
         {
-            process.UpdateProudctType(dataGridView1, comboBox1);
+            process.UpdateProudctType(dataGridView1, comboBox1, lblCount);
         }
     }
 }

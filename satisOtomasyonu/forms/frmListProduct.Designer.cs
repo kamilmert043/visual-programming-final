@@ -48,9 +48,9 @@
             this.button3 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.lblCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataListProduct)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +63,7 @@
             this.dataListProduct.Name = "dataListProduct";
             this.dataListProduct.Size = new System.Drawing.Size(957, 206);
             this.dataListProduct.TabIndex = 0;
-            this.dataListProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListProduct_CellDoubleClick);
+            this.dataListProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListProduct_CellClick);
             // 
             // cbProductType
             // 
@@ -231,15 +231,6 @@
             this.label8.TabIndex = 32;
             this.label8.Text = "Ürün Ara:";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(677, 282);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(101, 13);
-            this.label9.TabIndex = 34;
-            this.label9.Text = "Toplam Kayıt Sayısı:";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -258,15 +249,26 @@
             this.label11.TabIndex = 36;
             this.label11.Text = "Ürün Cinsi:";
             // 
+            // lblCount
+            // 
+            this.lblCount.AutoSize = true;
+            this.lblCount.BackColor = System.Drawing.Color.Red;
+            this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblCount.Location = new System.Drawing.Point(739, 266);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(183, 20);
+            this.lblCount.TabIndex = 53;
+            this.lblCount.Text = "Toplam Kayıt Sayısı: 0";
+            // 
             // frmListProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSalmon;
             this.ClientSize = new System.Drawing.Size(957, 383);
+            this.Controls.Add(this.lblCount);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button3);
@@ -318,8 +320,8 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblCount;
     }
 }

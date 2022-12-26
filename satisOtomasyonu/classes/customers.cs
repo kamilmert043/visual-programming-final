@@ -69,7 +69,7 @@ namespace satisOtomasyonu
            
         }
 
-        public void loadCustomers(DataGridView data)
+        public void loadCustomers(DataGridView data, Label count)
         {
             connection.Open();
             MySqlDataAdapter da = new MySqlDataAdapter("Select * from customers", connection);
@@ -82,8 +82,9 @@ namespace satisOtomasyonu
             data.Columns[2].HeaderText = "Telefon";
             data.Columns[3].HeaderText = "Adres";
             data.Columns[4].HeaderText = "E-Mail";
+            count.Text = "Toplam Kayıt Sayısı:" + (data.Rows.Count);
         }
-        public void searchCustomers(DataGridView data, TextBox searchString)
+        public void searchCustomers(DataGridView data, TextBox searchString, Label count)
         {
             connection.Open();
             MySqlDataAdapter da = new MySqlDataAdapter("SELECT * FROM customers WHERE nameSurname LIKE CONCAT(@nameSurname, '%')", connection);
@@ -92,6 +93,7 @@ namespace satisOtomasyonu
             da.Fill(dt);
             data.DataSource = dt;
             connection.Close();
+            count.Text = "Toplam Kayıt Sayısı:" + (data.Rows.Count);
         }
 
         public void listCustomers(DataGridView data, TextBox nameSurname, MaskedTextBox phone, TextBox adress, TextBox mail)

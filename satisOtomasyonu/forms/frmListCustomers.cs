@@ -22,18 +22,14 @@ namespace satisOtomasyonu.forms
             dataListCustomers.AllowUserToAddRows = false;
             dataListCustomers.AllowUserToDeleteRows = false;
             dataListCustomers.ReadOnly = true;
-            process.loadCustomers(dataListCustomers);
+            process.loadCustomers(dataListCustomers, lblCount);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            process.searchCustomers(dataListCustomers, txtSearch);
+            process.searchCustomers(dataListCustomers, txtSearch, lblCount);
         }
 
-        private void dataListCustomers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            process.listCustomers(dataListCustomers, txtNameSurname, txtPhone, txtAdress, txtMail);
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -68,7 +64,7 @@ namespace satisOtomasyonu.forms
             else
             {
                 process.updateCustomers(dataListCustomers, txtNameSurname, txtPhone, txtAdress, txtMail);
-                process.loadCustomers(dataListCustomers);
+                process.loadCustomers(dataListCustomers, lblCount);
             }
 
         }
@@ -97,8 +93,13 @@ namespace satisOtomasyonu.forms
         private void button2_Click(object sender, EventArgs e)
         {
             process.dropCustomer(dataListCustomers);
-            process.loadCustomers(dataListCustomers);
+            process.loadCustomers(dataListCustomers, lblCount);
             
+        }
+
+        private void dataListCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            process.listCustomers(dataListCustomers, txtNameSurname, txtPhone, txtAdress, txtMail);
         }
     }
 }

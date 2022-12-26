@@ -136,6 +136,39 @@ namespace satisOtomasyonu
         {
             this.Close();
         }
+
+        private void frmRegister_Load(object sender, EventArgs e)
+        {
+           // txtPassword.Text = "Şifre Tekrar";
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                txtPassword.PasswordChar = '\0';
+                checkBox1.Text = "Gizle";
+            }
+            else
+            {
+                txtPassword.PasswordChar = '*';
+                checkBox1.Text = "Göster";
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked == true)
+            {
+                txtRepassword.PasswordChar = '\0';
+                checkBox2.Text = "Gizle";
+            }
+            else
+            {
+                txtRepassword.PasswordChar = '*';
+                checkBox2.Text = "Göster";
+            }
+        }
     }
     
 }

@@ -104,7 +104,7 @@ namespace satisOtomasyonu
             productName.Items.Clear();
         }
 
-        public void listProduct(DataGridView data)
+        public void listProduct(DataGridView data, Label count)
         {
             connection.Open();
             MySqlDataAdapter da = new MySqlDataAdapter("Select id, productName, productType, productQuantity, productPurchasePrice, productPurchaseDate, productSalePrice, productTax from productss", connection);
@@ -120,6 +120,8 @@ namespace satisOtomasyonu
             data.Columns[5].HeaderText = "Ürün Alım Tarihi";
             data.Columns[6].HeaderText = "Ürün Satış Fiyatı";
             data.Columns[7].HeaderText = "Vergi Oranı(%)";
+            count.Text = "Toplam Kayıt Sayısı:" + (data.Rows.Count);
+
         }
         public void loadUpdateProduct(DataGridView data, ComboBox productType, ComboBox productName, TextBox productQuantity, TextBox productPurchasePrice, DateTimePicker productPurchaseDate, TextBox productSalePrice, TextBox productTax)
         {
@@ -179,7 +181,7 @@ namespace satisOtomasyonu
             connection.Close();
         }
 
-        public void searchProduct(DataGridView data, TextBox searchString)
+        public void searchProduct(DataGridView data, TextBox searchString, Label count, ComboBox productType, ComboBox productName, TextBox productQuantity, TextBox productPurchasePrice, DateTimePicker productPurchaseDate, TextBox productSalePrice, TextBox productTax)
         {
             connection.Open();
             MySqlDataAdapter da = new MySqlDataAdapter("SELECT id, productName, productType, productQuantity, productPurchasePrice, productPurchaseDate, productSalePrice, productTax FROM productss WHERE productName LIKE CONCAT(@name, '%')", connection);
@@ -196,6 +198,18 @@ namespace satisOtomasyonu
             data.Columns[5].HeaderText = "Ürün Alım Tarihi";
             data.Columns[6].HeaderText = "Ürün Satış Fiyatı";
             data.Columns[7].HeaderText = "Vergi Oranı(%)";
+            count.Text = "Toplam Kayıt Sayısı:" + (data.Rows.Count);
+            if (data.Rows.Count != 0)
+            {
+                productName.SelectedItem = data.CurrentRow.Cells[1].Value.ToString();
+                productType.SelectedItem = data.CurrentRow.Cells[2].Value.ToString();
+                productQuantity.Text = data.CurrentRow.Cells[3].Value.ToString();
+                productPurchasePrice.Text = data.CurrentRow.Cells[4].Value.ToString();
+                DateTime date = DateTime.Parse(data.CurrentRow.Cells[5].Value.ToString());
+                productPurchaseDate.Value = date;
+                productSalePrice.Text = data.CurrentRow.Cells[6].Value.ToString();
+                productTax.Text = data.CurrentRow.Cells[7].Value.ToString();
+            }
         }
 
         public void dropProduct(DataGridView data)
@@ -214,7 +228,7 @@ namespace satisOtomasyonu
 
         }
 
-        public void UpdateProudctType(DataGridView data,ComboBox productType)
+        public void UpdateProudctType(DataGridView data,ComboBox productType, Label count)
         {
             if (true)
             {
@@ -235,8 +249,8 @@ namespace satisOtomasyonu
                 data.DataSource = dt;
                 connection.Close();
             }
+            count.Text = "Toplam Kayıt Sayısı:" + (data.Rows.Count);
 
-          
         }
 
 

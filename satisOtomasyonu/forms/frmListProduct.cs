@@ -22,14 +22,10 @@ namespace satisOtomasyonu
             dataListProduct.AllowUserToAddRows = false;
             dataListProduct.AllowUserToDeleteRows = false;
             dataListProduct.ReadOnly = true;
-            process.listProduct(dataListProduct);
-        }
-
-        private void dataListProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            process.loadUpdateProduct(dataListProduct, cbProductType, cbProductName, txtProductQuantity, txtProductPurchasePrice, dateProductPurchaseDate, txtProductSalePrice, txtProductTax);
+            process.listProduct(dataListProduct, lblCount);
             
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -65,14 +61,22 @@ namespace satisOtomasyonu
             if (error == 0)
             {
                 process.updateProduct(dataListProduct, cbProductType, cbProductName, txtProductQuantity, txtProductPurchasePrice, dateProductPurchaseDate, txtProductSalePrice, txtProductTax);
-                process.listProduct(dataListProduct);
+                process.listProduct(dataListProduct, lblCount);
+                cbProductType.SelectedIndex = -1;
+                cbProductName.SelectedIndex = -1;
+                txtProductQuantity.Text = "";
+                txtProductPurchasePrice.Text = "";
+                txtProductSalePrice.Text = "";
+                txtProductTax.Text = "";
+
+
             }
 
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            process.searchProduct(dataListProduct, textBox1);
+            process.searchProduct(dataListProduct, textBox1, lblCount, cbProductType, cbProductName, txtProductQuantity, txtProductPurchasePrice, dateProductPurchaseDate, txtProductSalePrice, txtProductTax);
             /*DataView search = new DataView;
             search.RowFilter = "ismi like '" + textBox1.Text + "%'";
             dataListProduct.DataSource = search;*/
@@ -101,7 +105,12 @@ namespace satisOtomasyonu
         private void button2_Click(object sender, EventArgs e)
         {
             process.dropProduct(dataListProduct);
-            process.listProduct(dataListProduct);
+            process.listProduct(dataListProduct, lblCount);
+        }
+
+        private void dataListProduct_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            process.loadUpdateProduct(dataListProduct, cbProductType, cbProductName, txtProductQuantity, txtProductPurchasePrice, dateProductPurchaseDate, txtProductSalePrice, txtProductTax);
         }
     }
 }

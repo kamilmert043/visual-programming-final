@@ -30,7 +30,6 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -40,6 +39,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lblCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -63,15 +63,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(957, 206);
             this.panel1.TabIndex = 1;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(667, 290);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(101, 13);
-            this.label9.TabIndex = 44;
-            this.label9.Text = "Toplam Kayıt Sayısı:";
             // 
             // textBox1
             // 
@@ -150,14 +141,25 @@
             this.comboBox1.Size = new System.Drawing.Size(187, 21);
             this.comboBox1.TabIndex = 45;
             // 
+            // lblCount
+            // 
+            this.lblCount.AutoSize = true;
+            this.lblCount.BackColor = System.Drawing.Color.Red;
+            this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblCount.Location = new System.Drawing.Point(729, 271);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(183, 20);
+            this.lblCount.TabIndex = 53;
+            this.lblCount.Text = "Toplam Kayıt Sayısı: 0";
+            // 
             // frmListProductGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSalmon;
             this.ClientSize = new System.Drawing.Size(957, 383);
+            this.Controls.Add(this.lblCount);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label8);
@@ -181,7 +183,6 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button3;
@@ -191,5 +192,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label lblCount;
     }
 }

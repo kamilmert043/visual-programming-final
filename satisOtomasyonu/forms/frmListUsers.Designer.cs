@@ -43,7 +43,7 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblCount = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -193,14 +193,16 @@
             this.txtUsername.TabIndex = 33;
             this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
             // 
-            // label9
+            // lblCount
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(684, 299);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(101, 13);
-            this.label9.TabIndex = 52;
-            this.label9.Text = "Toplam Kayıt Sayısı:";
+            this.lblCount.AutoSize = true;
+            this.lblCount.BackColor = System.Drawing.Color.Red;
+            this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblCount.Location = new System.Drawing.Point(746, 294);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(183, 20);
+            this.lblCount.TabIndex = 52;
+            this.lblCount.Text = "Toplam Kayıt Sayısı: 0";
             // 
             // textBox1
             // 
@@ -272,7 +274,7 @@
             this.ClientSize = new System.Drawing.Size(957, 383);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblCount);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.button3);
@@ -319,7 +321,7 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblCount;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button3;
