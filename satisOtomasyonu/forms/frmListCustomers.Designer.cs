@@ -59,6 +59,7 @@
             // 
             // dataListCustomers
             // 
+            this.dataListCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataListCustomers.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataListCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataListCustomers.Dock = System.Windows.Forms.DockStyle.Fill;

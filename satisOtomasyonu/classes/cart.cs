@@ -78,15 +78,12 @@ namespace satisOtomasyonu.classes
                 unitPrice.Text = "";
                 productQuantity.Text = "";
                 totalPrice.Text = "";
+                productTax.Text = "";
             }
         }
         public void calcPrice(TextBox productQuantity, TextBox unitPrice, TextBox totalPrice)
         {
-            if (string.IsNullOrWhiteSpace(productQuantity.Text)) 
-            {
-
-            }
-            else
+            if (!string.IsNullOrWhiteSpace(productQuantity.Text) && !string.IsNullOrWhiteSpace(unitPrice.Text)) 
             {
                 double quantity = double.Parse(productQuantity.Text);
                 double unit = double.Parse(unitPrice.Text);
@@ -98,7 +95,7 @@ namespace satisOtomasyonu.classes
 
         }
 
-        public void listCart(DataGridView data)
+        public void listCart(DataGridView data, Label count)
         {
             connection.Open();
             MySqlDataAdapter da = new MySqlDataAdapter("Select * from carts", connection);
@@ -106,14 +103,17 @@ namespace satisOtomasyonu.classes
             da.Fill(dt);
             data.DataSource = dt;
             connection.Close();
-            /*data.Columns[0].Visible = false;
-            data.Columns[1].HeaderText = "Ürün İsmi";
-            data.Columns[2].HeaderText = "Ürün Cinsi";
-            data.Columns[3].HeaderText = "Ürün Miktarı";
-            data.Columns[4].HeaderText = "Ürün Alış Fiyatı";
-            data.Columns[5].HeaderText = "Ürün Alım Tarihi";
-            data.Columns[6].HeaderText = "Ürün Satış Fiyatı";
-            data.Columns[7].HeaderText = "Vergi Oranı(%)";*/
+            data.Columns[4].HeaderText = "Müşteri ID";
+            data.Columns[5].HeaderText = "Adı Soyadı";
+            data.Columns[6].HeaderText = "Telefon";
+            data.Columns[7].HeaderText = "Ürün ID";
+            data.Columns[8].HeaderText = "Ürün İsmi";
+            data.Columns[9].HeaderText = "Ürün Tipi";
+            data.Columns[10].HeaderText = "Birim Fiyatı";
+            data.Columns[11].HeaderText = "Miktarı";
+            data.Columns[12].HeaderText = "Toplam Tutar";
+            data.Columns[13].HeaderText = "Vergi";
+            count.Text = "Sepetteki Ürün Sayısı: " + data.Rows.Count.ToString();
         }
         public void addCart(DataGridView data, TextBox customerNameSurname, TextBox customerPhone, TextBox customerMail, TextBox customerID, TextBox productType, TextBox productName, TextBox productID, TextBox productStockQuantity, TextBox productQuantity, TextBox productUnitPrice, TextBox productTotalPrice, TextBox productTax)
         {
@@ -135,9 +135,10 @@ namespace satisOtomasyonu.classes
             }
             else
             {
-                MySqlCommand command = new MySqlCommand("INSERT INTO carts (customerID, nameSurname, productID, productName, productType, unitPrice, amount, totalPrice, tax) values (@customerID, @nameSurname, @productID, @productName, @productType, @unitPrice, @amount, @totalPrice, @tax)", connection);
+                MySqlCommand command = new MySqlCommand("INSERT INTO carts (customerID, nameSurname, phone, productID, productName, productType, unitPrice, amount, totalPrice, tax) values (@customerID, @nameSurname, @phone, @productID, @productName, @productType, @unitPrice, @amount, @totalPrice, @tax)", connection);
                 command.Parameters.AddWithValue("@customerID", customerID.Text);
                 command.Parameters.AddWithValue("@nameSurname", customerNameSurname.Text);
+                command.Parameters.AddWithValue("@phone", customerPhone.Text);
                 command.Parameters.AddWithValue("@productID", productID.Text);
                 command.Parameters.AddWithValue("@productName", productName.Text);
                 command.Parameters.AddWithValue("@productType", productType.Text);
@@ -179,11 +180,11 @@ namespace satisOtomasyonu.classes
         public void priceUpdate(DataGridView data, Label lblPrice, Label lblTax)
         {
             double price = 0, tax = 0;
-            for (int i = 0; i < data.Rows.Count-1; i++)
+            for (int i = 0; i < data.Rows.Count; i++)
             {
                 price += double.Parse(data.Rows[i].Cells["totalPrice"].Value.ToString());
-                tax += price * 0.18;
             }
+            tax += price * 0.18;
             lblPrice.Text = price.ToString();
             lblTax.Text = tax.ToString();
         }
@@ -203,7 +204,7 @@ namespace satisOtomasyonu.classes
             connection.Close();
         }
 
-        public void increaseCart(DataGridView data, Label lblamount, Label lblquantity)
+        public void increaseCart(DataGridView data)
         {
             double quantity = 0;
             connection.Open();
@@ -213,7 +214,6 @@ namespace satisOtomasyonu.classes
             if (dr.Read())
             {
                 quantity = Convert.ToDouble(dr["productQuantity"]);
-                lblquantity.Text = dr["productQuantity"].ToString();
 
             }
             connection.Close();
@@ -227,7 +227,6 @@ namespace satisOtomasyonu.classes
             if (dr2.Read())
             {
                 amount = Convert.ToDouble(dr2["amount"]);
-                lblamount.Text = dr2["amount"].ToString();
 
             }
             connection.Close();
@@ -289,6 +288,117 @@ namespace satisOtomasyonu.classes
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
+        }
+
+        public void makeSale(DataGridView data)
+        {
+            for (int i = 0; i < data.RowCount; i++)
+            {
+                
+                MySqlCommand command = new MySqlCommand("insert into sales (customerID, customerNameSurname, customerPhone, productID, productName, productType, unitPrice, amount, totalPrice, tax, CartID) values (@customerID, @customerNameSurname, @customerphone, @productID, @productName, @productType, @unitPrice, @amount, @totalPrice, @tax, @CartID)", connection);
+                MySqlCommand command2 = new MySqlCommand("delete from carts", connection);
+                command.Parameters.AddWithValue("@customerID", data.Rows[i].Cells["customerID"].Value.ToString());
+                command.Parameters.AddWithValue("@customerNameSurname", data.Rows[i].Cells["nameSurname"].Value.ToString());
+                command.Parameters.AddWithValue("@customerPhone", data.Rows[i].Cells["phone"].Value.ToString());
+                command.Parameters.AddWithValue("@productID", data.Rows[i].Cells["productID"].Value.ToString());
+                command.Parameters.AddWithValue("@productName", data.Rows[i].Cells["productName"].Value.ToString());
+                command.Parameters.AddWithValue("@productType", data.Rows[i].Cells["productType"].Value.ToString());
+                command.Parameters.AddWithValue("@unitPrice", data.Rows[i].Cells["unitPrice"].Value.ToString());
+                command.Parameters.AddWithValue("@amount", data.Rows[i].Cells["amount"].Value.ToString());
+                command.Parameters.AddWithValue("@totalPrice", data.Rows[i].Cells["totalPrice"].Value.ToString());
+                command.Parameters.AddWithValue("@tax", data.Rows[i].Cells["tax"].Value.ToString());
+                command.Parameters.AddWithValue("@CartID", data.Rows[i].Cells["id"].Value.ToString());
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                command2.ExecuteNonQuery();
+                connection.Close();
+                
+            }
+        }
+
+        public void productReturnSearch(TextBox searchString, TextBox productType, TextBox productName, TextBox productID, NumericUpDown productAmount, TextBox customerNameSurname, TextBox customerPhone, TextBox salesID, TextBox salesAmount)
+        {
+            connection.Open();
+            MySqlCommand command = new MySqlCommand("select * from sales where id LIKE CONCAT(@id, '%')", connection);
+            command.Parameters.AddWithValue("@id", searchString.Text);
+            MySqlDataReader dr = command.ExecuteReader();
+            if (dr.Read())
+            {
+                salesID.Text = dr["id"].ToString();
+                productType.Text = dr["productType"].ToString();
+                productName.Text = dr["productName"].ToString();
+                productID.Text = dr["productID"].ToString();
+                salesAmount.Text = dr["amount"].ToString();
+                productAmount.Value = 0;
+                customerNameSurname.Text = dr["customerNameSurname"].ToString();
+                customerPhone.Text = dr["customerPhone"].ToString();
+
+
+            }
+            connection.Close();
+
+
+            if (string.IsNullOrWhiteSpace(searchString.Text))
+            {
+                salesID.Text = "";
+                productType.Text = "";
+                productName.Text = "";
+                productID.Text = "";
+                productAmount.Text = "";
+                customerNameSurname.Text = "";
+                customerPhone.Text = "";
+            }
+
+        }
+        public void productReturn (TextBox salesID, NumericUpDown productAmount, TextBox productID)
+        {
+            double amount = 0;
+            string description = "";
+            connection.Open();
+            MySqlCommand command = new MySqlCommand("select amount, description from sales where id = @id", connection);
+            command.Parameters.AddWithValue("@id", salesID.Text);
+            MySqlDataReader dr = command.ExecuteReader();
+            if (dr.Read())
+            {
+                amount = Convert.ToDouble(dr["amount"].ToString());
+                description = dr["description"].ToString();
+            }
+            connection.Close();
+            if (Convert.ToDouble(productAmount.Value) <= amount)
+            {
+                MySqlCommand command2 = new MySqlCommand("update productss set productQuantity=productQuantity+@amount where id=@id1", connection);
+                command2.Parameters.AddWithValue("@id1", productID.Text);
+                command2.Parameters.AddWithValue("@amount", productAmount.Text);
+
+                MySqlCommand command3 = new MySqlCommand("update sales set amount = amount-@amount where id=@id2", connection);
+                command3.Parameters.AddWithValue("@id2", salesID.Text);
+                command3.Parameters.AddWithValue("@amount", productAmount.Text);
+
+                MySqlCommand command4 = new MySqlCommand("update sales set totalPrice=unitPrice*amount where id=@id3", connection);
+                command4.Parameters.AddWithValue("@id3", salesID.Text);
+
+
+
+                string description2 = description +"   " + productAmount.Value.ToString() + " adet ürün iadesi gerçekleştirildi." + DateTime.Now.ToString();
+                MySqlCommand command5 = new MySqlCommand("UPDATE sales SET description = @text WHERE id = @id4", connection);
+                command5.Parameters.AddWithValue("@id4", salesID.Text);
+                command5.Parameters.AddWithValue("@text",description2);
+
+                connection.Open();
+                command2.ExecuteNonQuery();
+                command3.ExecuteNonQuery();
+                command4.ExecuteNonQuery();
+                command5.ExecuteNonQuery();
+                connection.Close();
+
+                MessageBox.Show("Ürün İadesi Gerçekleştirildi.", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Satılandan Fazla Ürün İade Edemezsiniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
         }
     }
 }

@@ -81,6 +81,8 @@ namespace satisOtomasyonu
             }
             connection.Close();
         }
+
+
         public void addProduct(ComboBox productType, ComboBox productName, TextBox productQuantity, TextBox productPurchasePrice, DateTimePicker productPurchaseDate, TextBox productSalePrice, TextBox productTax)
         {
             string query = "INSERT INTO productss (productName, productType, productQuantity, productPurchasePrice, productPurchaseDate, productSalePrice, productTax) values(@name, @type, @quantity, @purchasePrice, @purchaseDate, @salePrice, @tax)";
@@ -228,31 +230,56 @@ namespace satisOtomasyonu
 
         }
 
-        public void UpdateProudctType(DataGridView data,ComboBox productType, Label count)
+        public void listProductName(DataGridView data, Label count)
         {
-            if (true)
-            {
                 connection.Open();
-                MySqlDataAdapter da = new MySqlDataAdapter("Select pname from products_name", connection);
+                MySqlDataAdapter da = new MySqlDataAdapter("Select id, pname from products_name", connection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 data.DataSource = dt;
                 connection.Close();
-            }
 
-            if (true)
-            {
-                connection.Open();
-                MySqlDataAdapter da = new MySqlDataAdapter("Select productType from products_type", connection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                data.DataSource = dt;
-                connection.Close();
-            }
-            count.Text = "Toplam Kayıt Sayısı:" + (data.Rows.Count);
+            int total = data.Rows.Count - 1;
+            count.Text = "Toplam Kayıt Sayısı:" + total.ToString() ;
+            data.Columns[0].Visible = false;
+        }
+
+        public void listSelectedProductName(DataGridView data, TextBox pname)
+        {
+            pname.Text = data.CurrentRow.Cells[1].Value.ToString();
 
         }
 
+        public void updateProductName(DataGridView data, TextBox pName)
+        {
+            int selRow = Convert.ToInt32((data.CurrentRow.Cells[0].Value));
 
+            MySqlCommand command = new MySqlCommand("UPDATE products_name SET pName = @pName where  id = @row", connection);
+            command.Parameters.AddWithValue("@pName", pName.Text);
+            command.Parameters.AddWithValue("@row", selRow);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void deleteProductName(DataGridView data)
+        {
+            int selRow = Convert.ToInt32((data.CurrentRow.Cells[0].Value));
+
+            MySqlCommand command = new MySqlCommand("delete from products_name where id = @srow", connection);
+            command.Parameters.AddWithValue("@srow", selRow);
+        }
+
+        public void searchProductName(DataGridView data, TextBox searchString)
+        {
+            connection.Open();
+            MySqlDataAdapter da = new MySqlDataAdapter("SELECT id, pName FROM products_name WHERE pName LIKE CONCAT(@name, '%')", connection);
+            da.SelectCommand.Parameters.AddWithValue("@name", searchString.Text);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            data.DataSource = dt;
+            connection.Close();
+            data.Columns[0].Visible = false;
+        }
     }
 }

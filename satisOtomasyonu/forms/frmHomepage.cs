@@ -105,6 +105,18 @@ namespace satisOtomasyonu
             {
                 MessageBox.Show("Bu bölüme giriş için yetkiniz yetersiz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
+            else
+            {
+                frmListSales listSales = new frmListSales();
+                getForm(listSales);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            forms.frmSalesGraphic salesGraphic = new forms.frmSalesGraphic();
+            getForm(salesGraphic);
         }
     }
 }

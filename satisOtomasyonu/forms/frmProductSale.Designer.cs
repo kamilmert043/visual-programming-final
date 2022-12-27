@@ -28,9 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProductSale));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.remove = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.increase = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.decrease = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
@@ -66,32 +71,29 @@
             this.txtCustomerSearch = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnPrintPage = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnAcceptOrder = new System.Windows.Forms.Button();
             this.cbPaymentMethod = new System.Windows.Forms.ComboBox();
             this.txtChange = new System.Windows.Forms.TextBox();
             this.txtPaid = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.lblTax = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.lblPrice = new System.Windows.Forms.Label();
-            this.remove = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.increase = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.decrease = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.lblTax = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnViewSales = new System.Windows.Forms.Button();
+            this.btnViewPrice = new System.Windows.Forms.Button();
+            this.btnProductReturn = new System.Windows.Forms.Button();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -123,16 +125,26 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 86F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(811, 561);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(892, 569);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // listBox1
+            // 
+            this.listBox1.BackColor = System.Drawing.Color.LightSalmon;
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(4, 562);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(32, 0);
+            this.listBox1.TabIndex = 1;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(4, 166);
+            this.panel1.Location = new System.Drawing.Point(4, 170);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(803, 219);
+            this.panel1.Size = new System.Drawing.Size(884, 223);
             this.panel1.TabIndex = 2;
             // 
             // dataGridView1
@@ -146,9 +158,30 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(803, 219);
+            this.dataGridView1.Size = new System.Drawing.Size(884, 223);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // remove
+            // 
+            this.remove.HeaderText = "Sil";
+            this.remove.Name = "remove";
+            this.remove.Text = "Sil";
+            this.remove.UseColumnTextForButtonValue = true;
+            // 
+            // increase
+            // 
+            this.increase.HeaderText = "Arttır";
+            this.increase.Name = "increase";
+            this.increase.Text = "Arttır";
+            this.increase.UseColumnTextForButtonValue = true;
+            // 
+            // decrease
+            // 
+            this.decrease.HeaderText = "Azalt";
+            this.decrease.Name = "decrease";
+            this.decrease.Text = "Azalt";
+            this.decrease.UseColumnTextForButtonValue = true;
             // 
             // tableLayoutPanel2
             // 
@@ -163,13 +196,11 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(803, 155);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(884, 159);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.label22);
-            this.panel5.Controls.Add(this.label21);
             this.panel5.Controls.Add(this.label20);
             this.panel5.Controls.Add(this.txtProductTax);
             this.panel5.Controls.Add(this.label19);
@@ -191,9 +222,9 @@
             this.panel5.Controls.Add(this.txtProductName);
             this.panel5.Controls.Add(this.txtProductType);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(248, 4);
+            this.panel5.Location = new System.Drawing.Point(273, 4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(551, 147);
+            this.panel5.Size = new System.Drawing.Size(607, 151);
             this.panel5.TabIndex = 4;
             // 
             // label20
@@ -388,7 +419,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(237, 147);
+            this.panel2.Size = new System.Drawing.Size(262, 151);
             this.panel2.TabIndex = 3;
             // 
             // label18
@@ -486,28 +517,48 @@
             this.tableLayoutPanel3.Controls.Add(this.panel4, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.panel3, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 392);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 400);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(803, 80);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(884, 80);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.label24);
+            this.panel4.Controls.Add(this.label23);
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.button3);
+            this.panel4.Controls.Add(this.btnPrintPage);
             this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.button4);
+            this.panel4.Controls.Add(this.btnAcceptOrder);
             this.panel4.Controls.Add(this.cbPaymentMethod);
             this.panel4.Controls.Add(this.txtChange);
             this.panel4.Controls.Add(this.txtPaid);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(302, 4);
+            this.panel4.Location = new System.Drawing.Point(332, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(497, 72);
+            this.panel4.Size = new System.Drawing.Size(548, 72);
             this.panel4.TabIndex = 1;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(100, 49);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(79, 13);
+            this.label24.TabIndex = 16;
+            this.label24.Text = "F2 = Kredi Kartı";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(93, 11);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(93, 13);
+            this.label23.TabIndex = 15;
+            this.label23.Text = "F1 = Nakit Ödeme";
             // 
             // label6
             // 
@@ -527,14 +578,15 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Para Üstü:";
             // 
-            // button3
+            // btnPrintPage
             // 
-            this.button3.Location = new System.Drawing.Point(417, 41);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "Satış İptal";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnPrintPage.Location = new System.Drawing.Point(417, 41);
+            this.btnPrintPage.Name = "btnPrintPage";
+            this.btnPrintPage.Size = new System.Drawing.Size(97, 23);
+            this.btnPrintPage.TabIndex = 13;
+            this.btnPrintPage.Text = "Yazdır (F5)";
+            this.btnPrintPage.UseVisualStyleBackColor = true;
+            this.btnPrintPage.Click += new System.EventHandler(this.btnDeclineOrder_Click);
             // 
             // label5
             // 
@@ -545,18 +597,22 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Ödenen:";
             // 
-            // button4
+            // btnAcceptOrder
             // 
-            this.button4.Location = new System.Drawing.Point(418, 14);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 12;
-            this.button4.Text = "Satış Onay";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnAcceptOrder.Location = new System.Drawing.Point(418, 14);
+            this.btnAcceptOrder.Name = "btnAcceptOrder";
+            this.btnAcceptOrder.Size = new System.Drawing.Size(97, 23);
+            this.btnAcceptOrder.TabIndex = 12;
+            this.btnAcceptOrder.Text = "Satış Onay (F4)";
+            this.btnAcceptOrder.UseVisualStyleBackColor = true;
+            this.btnAcceptOrder.Click += new System.EventHandler(this.btnAcceptOrder_Click);
             // 
             // cbPaymentMethod
             // 
             this.cbPaymentMethod.FormattingEnabled = true;
+            this.cbPaymentMethod.Items.AddRange(new object[] {
+            "Nakit",
+            "Kredi Kartı"});
             this.cbPaymentMethod.Location = new System.Drawing.Point(80, 27);
             this.cbPaymentMethod.Name = "cbPaymentMethod";
             this.cbPaymentMethod.Size = new System.Drawing.Size(118, 21);
@@ -587,119 +643,8 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(291, 72);
+            this.panel3.Size = new System.Drawing.Size(321, 72);
             this.panel3.TabIndex = 1;
-            // 
-            // lblTax
-            // 
-            this.lblTax.AutoSize = true;
-            this.lblTax.BackColor = System.Drawing.Color.White;
-            this.lblTax.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblTax.Location = new System.Drawing.Point(59, 11);
-            this.lblTax.Name = "lblTax";
-            this.lblTax.Size = new System.Drawing.Size(57, 24);
-            this.lblTax.TabIndex = 0;
-            this.lblTax.Text = "KDV:";
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.label3);
-            this.panel6.Controls.Add(this.button9);
-            this.panel6.Controls.Add(this.button7);
-            this.panel6.Controls.Add(this.button8);
-            this.panel6.Controls.Add(this.button6);
-            this.panel6.Controls.Add(this.button5);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(4, 479);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(803, 68);
-            this.panel6.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(559, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "label3";
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(346, 25);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(92, 23);
-            this.button9.TabIndex = 18;
-            this.button9.Text = "Yapılan Satışlar";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(265, 25);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 17;
-            this.button7.Text = "Fiyat Gör";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(184, 25);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 16;
-            this.button8.Text = "Ürün İade";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(103, 25);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 15;
-            this.button6.Text = "Müşteri Borç";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(22, 25);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 14;
-            this.button5.Text = "Anasayfa";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // lblPrice
-            // 
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.BackColor = System.Drawing.Color.White;
-            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblPrice.Location = new System.Drawing.Point(142, 41);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(140, 24);
-            this.lblPrice.TabIndex = 1;
-            this.lblPrice.Text = "Toplam Tutar:";
-            // 
-            // remove
-            // 
-            this.remove.HeaderText = "Sil";
-            this.remove.Name = "remove";
-            this.remove.Text = "Sil";
-            this.remove.UseColumnTextForButtonValue = true;
-            // 
-            // increase
-            // 
-            this.increase.HeaderText = "Arttır";
-            this.increase.Name = "increase";
-            this.increase.Text = "Arttır";
-            this.increase.UseColumnTextForButtonValue = true;
-            // 
-            // decrease
-            // 
-            this.decrease.HeaderText = "Azalt";
-            this.decrease.Name = "decrease";
-            this.decrease.Text = "Azalt";
-            this.decrease.UseColumnTextForButtonValue = true;
             // 
             // label1
             // 
@@ -723,44 +668,120 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "KDV:";
             // 
-            // label21
+            // lblPrice
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(311, 118);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(42, 13);
-            this.label21.TabIndex = 21;
-            this.label21.Text = "amount";
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.BackColor = System.Drawing.Color.White;
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblPrice.Location = new System.Drawing.Point(142, 41);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(140, 24);
+            this.lblPrice.TabIndex = 1;
+            this.lblPrice.Text = "Toplam Tutar:";
             // 
-            // label22
+            // lblTax
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(408, 118);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(44, 13);
-            this.label22.TabIndex = 22;
-            this.label22.Text = "quantity";
+            this.lblTax.AutoSize = true;
+            this.lblTax.BackColor = System.Drawing.Color.White;
+            this.lblTax.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblTax.Location = new System.Drawing.Point(59, 11);
+            this.lblTax.Name = "lblTax";
+            this.lblTax.Size = new System.Drawing.Size(57, 24);
+            this.lblTax.TabIndex = 0;
+            this.lblTax.Text = "KDV:";
             // 
-            // listBox1
+            // panel6
             // 
-            this.listBox1.BackColor = System.Drawing.Color.LightSalmon;
-            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(4, 554);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(32, 0);
-            this.listBox1.TabIndex = 1;
+            this.panel6.Controls.Add(this.button3);
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Controls.Add(this.btnViewSales);
+            this.panel6.Controls.Add(this.btnViewPrice);
+            this.panel6.Controls.Add(this.btnProductReturn);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(4, 487);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(884, 68);
+            this.panel6.TabIndex = 3;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(17, 25);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(129, 23);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "Excel\'e Aktar (F6)";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.OrangeRed;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label3.Location = new System.Drawing.Point(565, 25);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(192, 20);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Sepetteki Ürün Sayısı: ";
+            // 
+            // btnViewSales
+            // 
+            this.btnViewSales.Location = new System.Drawing.Point(379, 25);
+            this.btnViewSales.Name = "btnViewSales";
+            this.btnViewSales.Size = new System.Drawing.Size(129, 23);
+            this.btnViewSales.TabIndex = 18;
+            this.btnViewSales.Text = "Yapılan Satışlar (F9)";
+            this.btnViewSales.UseVisualStyleBackColor = true;
+            this.btnViewSales.Click += new System.EventHandler(this.btnViewSales_Click);
+            // 
+            // btnViewPrice
+            // 
+            this.btnViewPrice.Location = new System.Drawing.Point(264, 25);
+            this.btnViewPrice.Name = "btnViewPrice";
+            this.btnViewPrice.Size = new System.Drawing.Size(112, 23);
+            this.btnViewPrice.TabIndex = 17;
+            this.btnViewPrice.Text = "Fiyat Gör (F8)";
+            this.btnViewPrice.UseVisualStyleBackColor = true;
+            this.btnViewPrice.Click += new System.EventHandler(this.btnViewPrice_Click);
+            // 
+            // btnProductReturn
+            // 
+            this.btnProductReturn.Location = new System.Drawing.Point(149, 25);
+            this.btnProductReturn.Name = "btnProductReturn";
+            this.btnProductReturn.Size = new System.Drawing.Size(112, 23);
+            this.btnProductReturn.TabIndex = 16;
+            this.btnProductReturn.Text = "Ürün İade (F7)";
+            this.btnProductReturn.UseVisualStyleBackColor = true;
+            this.btnProductReturn.Click += new System.EventHandler(this.btnProductReturn_Click);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Text = "Baskı önizleme";
+            this.printPreviewDialog1.Visible = false;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage_1);
             // 
             // frmProductSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSalmon;
-            this.ClientSize = new System.Drawing.Size(811, 561);
+            this.ClientSize = new System.Drawing.Size(892, 569);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.KeyPreview = true;
             this.Name = "frmProductSale";
             this.Text = "frmProductSale";
             this.Load += new System.EventHandler(this.frmProductSale_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmProductSale_KeyDown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -805,8 +826,8 @@
         private System.Windows.Forms.ComboBox cbPaymentMethod;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnPrintPage;
+        private System.Windows.Forms.Button btnAcceptOrder;
         private System.Windows.Forms.Label lblTax;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
@@ -823,11 +844,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnViewSales;
+        private System.Windows.Forms.Button btnViewPrice;
+        private System.Windows.Forms.Button btnProductReturn;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtProductStockQuantity;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -843,8 +862,11 @@
         private System.Windows.Forms.DataGridViewButtonColumn decrease;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Button button3;
     }
 }

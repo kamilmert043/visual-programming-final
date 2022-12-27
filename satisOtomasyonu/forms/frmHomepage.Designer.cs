@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnListProductGroup = new System.Windows.Forms.Button();
             this.btnAddProductGroup = new System.Windows.Forms.Button();
             this.btnListSales = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnListProductGroup);
             this.panel1.Controls.Add(this.btnAddProductGroup);
             this.panel1.Controls.Add(this.btnListSales);
@@ -61,13 +63,23 @@
             this.panel1.Size = new System.Drawing.Size(957, 187);
             this.panel1.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(845, 79);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(106, 55);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Satış Grafiği";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // btnListProductGroup
             // 
             this.btnListProductGroup.Location = new System.Drawing.Point(125, 79);
             this.btnListProductGroup.Name = "btnListProductGroup";
             this.btnListProductGroup.Size = new System.Drawing.Size(106, 55);
             this.btnListProductGroup.TabIndex = 10;
-            this.btnListProductGroup.Text = "Ürün Grubu Güncelle";
+            this.btnListProductGroup.Text = "Ürün İsmi Güncelle";
             this.btnListProductGroup.UseVisualStyleBackColor = true;
             this.btnListProductGroup.Click += new System.EventHandler(this.btnListProductGroup_Click);
             // 
@@ -180,6 +192,7 @@
             this.IsMdiContainer = true;
             this.Name = "frmHomepage";
             this.Text = "Manav Satış Otomasyonu";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmHomepage_FormClosed);
             this.Load += new System.EventHandler(this.frmHomepage_Load);
             this.panel1.ResumeLayout(false);
@@ -201,6 +214,7 @@
         private System.Windows.Forms.Panel panelPages;
         private System.Windows.Forms.Button btnAddProductGroup;
         private System.Windows.Forms.Button btnListProductGroup;
+        private System.Windows.Forms.Button button1;
     }
 }
 

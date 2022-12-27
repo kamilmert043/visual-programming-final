@@ -112,5 +112,6 @@ namespace satisOtomasyonu
         {
             process.loadUpdateProduct(dataListProduct, cbProductType, cbProductName, txtProductQuantity, txtProductPurchasePrice, dateProductPurchaseDate, txtProductSalePrice, txtProductTax);
         }
+
     }
 }
