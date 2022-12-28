@@ -112,7 +112,7 @@
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(194, 23);
             this.btnRegister.TabIndex = 15;
-            this.btnRegister.Text = "Yeni Kullanıcı";
+            this.btnRegister.Text = "Şifremi Unuttum";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 

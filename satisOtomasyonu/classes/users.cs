@@ -34,8 +34,8 @@ namespace satisOtomasyonu.classes
                 {
                     frmHomepage homepage = new frmHomepage();
                     homepage.rank = Convert.ToInt32((dr["rank"]));
-     
-                    frmLogin.ActiveForm.Visible = false;
+
+                    Form.ActiveForm.Visible = false;
                     homepage.Show();
                     
                     
@@ -142,8 +142,7 @@ namespace satisOtomasyonu.classes
         }
         public void loadUsers(DataGridView data, ListBox listPass, Label count)
         {
-            listPass.Items.Clear();
-            Cryptology cryptology = new Cryptology();
+
             connection.Open();
             MySqlDataAdapter da = new MySqlDataAdapter("Select id, name, surname, username, password, mail, phone, rank from users", connection);
             DataTable dt = new DataTable();
@@ -158,23 +157,6 @@ namespace satisOtomasyonu.classes
             data.Columns[5].HeaderText = "E-Mail";
             data.Columns[6].HeaderText = "Telefon Numarası";
             data.Columns[7].HeaderText = "Pozisyon";
-            connection.Open();
-            MySqlCommand command = new MySqlCommand("Select password from users", connection);
-            MySqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                   
-                string decryptedText = "";
-                decryptedText = cryptology.Encryption(reader.GetString("password"));
-                listPass.Items.Add(decryptedText);
-                
-
-            }
-            connection.Close();
-            for (int i = 0; i < listPass.Items.Count; i++)
-            {
-                data.Rows[i].Cells[4].Value = listPass.Items[i];
-            }
             count.Text = "Toplam Kayıt Sayısı:" + (data.Rows.Count);
         }
 
@@ -234,31 +216,76 @@ namespace satisOtomasyonu.classes
 
         public void updateUser(DataGridView data, TextBox name, TextBox surname, TextBox username, TextBox password, TextBox mail, TextBox phone, TextBox rank)
         {
-            int selRow = Convert.ToInt32((data.CurrentRow.Cells[0].Value));
-            Cryptology cryptology = new Cryptology();
-            MySqlCommand command = new MySqlCommand("UPDATE users SET name = @name, surname = @surname, username = @username, password = @password, mail = @mail, phone = @phone, rank = @rank where id = @row", connection);
-            command.Parameters.AddWithValue("@name", name.Text);
-            command.Parameters.AddWithValue("@surname", surname.Text);
-            command.Parameters.AddWithValue("@username", username.Text);
-            string encryptedText = "";
-            encryptedText = cryptology.Encryption(password.Text);
-            command.Parameters.AddWithValue("@password", encryptedText);
-            command.Parameters.AddWithValue("@mail", mail.Text);
-            command.Parameters.AddWithValue("@phone", phone.Text);
-            command.Parameters.AddWithValue("@rank", rank.Text);
-            command.Parameters.AddWithValue("@row", selRow);
+            int changePass = 0;
             connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
-            MessageBox.Show("Kullanıcı Başarıyla Güncellendi", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            name.Text = "";
-            surname.Text = "";
-            username.Text = "";
-            password.Text = "";
-            mail.Text = "";
-            phone.Text = "";
-            rank.Text = "";
+            MySqlCommand command = new MySqlCommand("select * from users where password= @password", connection);
+            command.Parameters.AddWithValue("@password", password.Text);
+            MySqlDataReader dr = command.ExecuteReader();
+            if (dr.Read())
+            {
 
+                changePass = 1;
+
+            }
+            else
+            {
+            }
+            connection.Close();
+        
+        connection.Close();
+
+            if (changePass == 0)
+            {
+                int selRow = Convert.ToInt32((data.CurrentRow.Cells[0].Value));
+                Cryptology cryptology = new Cryptology();
+                MySqlCommand command3 = new MySqlCommand("UPDATE users SET name = @name, surname = @surname, username = @username, password = @password, mail = @mail, phone = @phone, rank = @rank where id = @row", connection);
+                command3.Parameters.AddWithValue("@name", name.Text);
+                command3.Parameters.AddWithValue("@surname", surname.Text);
+                command3.Parameters.AddWithValue("@username", username.Text);
+                string encryptedText = "";
+                encryptedText = cryptology.Encryption(password.Text);
+                command3.Parameters.AddWithValue("@password", encryptedText);
+                command3.Parameters.AddWithValue("@mail", mail.Text);
+                command3.Parameters.AddWithValue("@phone", phone.Text);
+                command3.Parameters.AddWithValue("@rank", rank.Text);
+                command3.Parameters.AddWithValue("@row", selRow);
+                connection.Open();
+                command3.ExecuteNonQuery();
+                connection.Close();
+                MessageBox.Show("Kullanıcı Başarıyla Güncellendi", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                name.Text = "";
+                surname.Text = "";
+                username.Text = "";
+                password.Text = "";
+                mail.Text = "";
+                phone.Text = "";
+                rank.Text = "";
+            }
+
+            else
+            {
+                int selRow = Convert.ToInt32((data.CurrentRow.Cells[0].Value));
+                Cryptology cryptology = new Cryptology();
+                MySqlCommand command2 = new MySqlCommand("UPDATE users SET name = @name, surname = @surname, username = @username, mail = @mail, phone = @phone, rank = @rank where id = @row", connection);
+                command2.Parameters.AddWithValue("@name", name.Text);
+                command2.Parameters.AddWithValue("@surname", surname.Text);
+                command2.Parameters.AddWithValue("@username", username.Text);
+                command2.Parameters.AddWithValue("@mail", mail.Text);
+                command2.Parameters.AddWithValue("@phone", phone.Text);
+                command2.Parameters.AddWithValue("@rank", rank.Text);
+                command2.Parameters.AddWithValue("@row", selRow);
+                connection.Open();
+                command2.ExecuteNonQuery();
+                connection.Close();
+                MessageBox.Show("Kullanıcı Başarıyla Güncellendi", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                name.Text = "";
+                surname.Text = "";
+                username.Text = "";
+                password.Text = "";
+                mail.Text = "";
+                phone.Text = "";
+                rank.Text = "";
+            }
         }
 
         public void dropUser(DataGridView data)

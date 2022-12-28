@@ -26,7 +26,7 @@ namespace satisOtomasyonu
             dataListUsers.ReadOnly = true;
 
             process.loadUsers(dataListUsers, listBox1, lblCount);
-            process.listSelectedUser(dataListUsers, txtName, txtSurname, txtUsername, txtPassword, txtMail, txtPhone, txtRank);
+         //   process.listSelectedUser(dataListUsers, txtName, txtSurname, txtUsername, txtPassword, txtMail, txtPhone, txtRank);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

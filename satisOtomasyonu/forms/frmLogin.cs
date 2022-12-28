@@ -25,8 +25,8 @@ namespace satisOtomasyonu
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            frmRegister registerpage = new frmRegister();
-            registerpage.Show();
+            forms.frmLostPassword lostPassword = new forms.frmLostPassword();
+            lostPassword.Show();
         }
         classes.users login = new classes.users();
         private void btnLogin_Click(object sender, EventArgs e)
