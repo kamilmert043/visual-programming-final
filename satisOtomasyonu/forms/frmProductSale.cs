@@ -17,6 +17,7 @@ namespace satisOtomasyonu.forms
             InitializeComponent();
         }
         classes.cart process = new classes.cart();
+        classes.currency currency = new classes.currency();
 
         private void payback()
         {
@@ -62,6 +63,9 @@ namespace satisOtomasyonu.forms
             dataGridView1.ReadOnly = true;
             process.listCart(dataGridView1, label3);
             process.priceUpdate(dataGridView1, lblPrice, lblTax);
+
+            currency.showCurrency(dataGridView1, lblDolar, lblEuro, lblSterlin, timer1);
+            
             payback();
 
         }
@@ -73,6 +77,7 @@ namespace satisOtomasyonu.forms
                 process.addCart(dataGridView1, txtCustomerNameSurname, txtCustomerPhone, txtCustomerMail, txtCustomerID, txtProductType, txtProductName, txtProductID, txtProductStockQuantity, txtProductQuantity, txtProductUnitPrice, txtProductTotalPrice, txtProductTax);
                 process.listCart(dataGridView1, label3);
                 process.priceUpdate(dataGridView1, lblPrice, lblTax);
+                currency.showCurrency(dataGridView1, lblDolar, lblEuro, lblSterlin, timer1);
                 process.dropStock(txtProductQuantity,txtProductID);
                 txtProductSearch.Text = "";
                 payback();
@@ -103,6 +108,7 @@ namespace satisOtomasyonu.forms
             process.deleteCart(dataGridView1);
             process.listCart(dataGridView1, label3);
             process.priceUpdate(dataGridView1, lblPrice, lblTax);
+            currency.showCurrency(dataGridView1, lblDolar, lblEuro, lblSterlin, timer1);
         }
 
         private void txtPaid_TextChanged(object sender, EventArgs e)
@@ -122,6 +128,7 @@ namespace satisOtomasyonu.forms
                 process.removeCart(dataGridView1);
                 process.listCart(dataGridView1, label3);
                 process.priceUpdate(dataGridView1, lblPrice, lblTax);
+                currency.showCurrency(dataGridView1, lblDolar, lblEuro, lblSterlin, timer1);
                 payback();
             }
 
@@ -130,6 +137,7 @@ namespace satisOtomasyonu.forms
                 process.increaseCart(dataGridView1);
                 process.listCart(dataGridView1, label3);
                 process.priceUpdate(dataGridView1, lblPrice, lblTax);
+                currency.showCurrency(dataGridView1, lblDolar, lblEuro, lblSterlin, timer1);
                 payback();
             }
 
@@ -138,6 +146,7 @@ namespace satisOtomasyonu.forms
                 process.decreaseCart(dataGridView1);
                 process.listCart(dataGridView1, label3);
                 process.priceUpdate(dataGridView1, lblPrice, lblTax);
+                currency.showCurrency(dataGridView1, lblDolar, lblEuro, lblSterlin, timer1);
                 payback();
             }
         }
@@ -196,6 +205,7 @@ namespace satisOtomasyonu.forms
             process.makeSale(dataGridView1);
             process.listCart(dataGridView1, label3);
             process.priceUpdate(dataGridView1, lblPrice, lblTax);
+            currency.showCurrency(dataGridView1, lblDolar, lblEuro, lblSterlin, timer1);
         }
 
         private void btnViewPrice_Click(object sender, EventArgs e)
@@ -312,6 +322,12 @@ namespace satisOtomasyonu.forms
                     range.Value2 = dataGridView1[i, j].Value;
                 }
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Interval = 5000;
+            currency.showCurrency(dataGridView1, lblDolar, lblEuro, lblSterlin, timer1);
         }
     }
 }

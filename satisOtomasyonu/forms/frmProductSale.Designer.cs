@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProductSale));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -94,6 +95,10 @@
             this.btnProductReturn = new System.Windows.Forms.Button();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.lblDolar = new System.Windows.Forms.Label();
+            this.lblEuro = new System.Windows.Forms.Label();
+            this.lblSterlin = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -125,7 +130,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 86F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(892, 569);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(968, 569);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // listBox1
@@ -144,7 +149,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(4, 170);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(884, 223);
+            this.panel1.Size = new System.Drawing.Size(960, 223);
             this.panel1.TabIndex = 2;
             // 
             // dataGridView1
@@ -158,7 +163,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(884, 223);
+            this.dataGridView1.Size = new System.Drawing.Size(960, 223);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -196,7 +201,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(884, 159);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(960, 159);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel5
@@ -222,9 +227,9 @@
             this.panel5.Controls.Add(this.txtProductName);
             this.panel5.Controls.Add(this.txtProductType);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(273, 4);
+            this.panel5.Location = new System.Drawing.Point(296, 4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(607, 151);
+            this.panel5.Size = new System.Drawing.Size(660, 151);
             this.panel5.TabIndex = 4;
             // 
             // label20
@@ -419,7 +424,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(262, 151);
+            this.panel2.Size = new System.Drawing.Size(285, 151);
             this.panel2.TabIndex = 3;
             // 
             // label18
@@ -521,7 +526,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(884, 80);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(960, 80);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // panel4
@@ -537,9 +542,9 @@
             this.panel4.Controls.Add(this.txtChange);
             this.panel4.Controls.Add(this.txtPaid);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(332, 4);
+            this.panel4.Location = new System.Drawing.Point(361, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(548, 72);
+            this.panel4.Size = new System.Drawing.Size(595, 72);
             this.panel4.TabIndex = 1;
             // 
             // label24
@@ -643,7 +648,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(321, 72);
+            this.panel3.Size = new System.Drawing.Size(350, 72);
             this.panel3.TabIndex = 1;
             // 
             // label1
@@ -692,6 +697,9 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.lblSterlin);
+            this.panel6.Controls.Add(this.lblEuro);
+            this.panel6.Controls.Add(this.lblDolar);
             this.panel6.Controls.Add(this.button3);
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.btnViewSales);
@@ -700,7 +708,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(4, 487);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(884, 68);
+            this.panel6.Size = new System.Drawing.Size(960, 68);
             this.panel6.TabIndex = 3;
             // 
             // button3
@@ -718,7 +726,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.OrangeRed;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(565, 25);
+            this.label3.Location = new System.Drawing.Point(704, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(192, 20);
             this.label3.TabIndex = 2;
@@ -770,12 +778,43 @@
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage_1);
             // 
+            // lblDolar
+            // 
+            this.lblDolar.AutoSize = true;
+            this.lblDolar.Location = new System.Drawing.Point(539, 5);
+            this.lblDolar.Name = "lblDolar";
+            this.lblDolar.Size = new System.Drawing.Size(45, 13);
+            this.lblDolar.TabIndex = 20;
+            this.lblDolar.Text = "USD($):";
+            // 
+            // lblEuro
+            // 
+            this.lblEuro.AutoSize = true;
+            this.lblEuro.Location = new System.Drawing.Point(539, 28);
+            this.lblEuro.Name = "lblEuro";
+            this.lblEuro.Size = new System.Drawing.Size(45, 13);
+            this.lblEuro.TabIndex = 21;
+            this.lblEuro.Text = "EUR(€):";
+            // 
+            // lblSterlin
+            // 
+            this.lblSterlin.AutoSize = true;
+            this.lblSterlin.Location = new System.Drawing.Point(539, 51);
+            this.lblSterlin.Name = "lblSterlin";
+            this.lblSterlin.Size = new System.Drawing.Size(44, 13);
+            this.lblSterlin.TabIndex = 22;
+            this.lblSterlin.Text = "GBP(£):";
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // frmProductSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSalmon;
-            this.ClientSize = new System.Drawing.Size(892, 569);
+            this.ClientSize = new System.Drawing.Size(968, 569);
             this.Controls.Add(this.tableLayoutPanel1);
             this.KeyPreview = true;
             this.Name = "frmProductSale";
@@ -868,5 +907,9 @@
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label lblSterlin;
+        private System.Windows.Forms.Label lblEuro;
+        private System.Windows.Forms.Label lblDolar;
+        private System.Windows.Forms.Timer timer1;
     }
 }

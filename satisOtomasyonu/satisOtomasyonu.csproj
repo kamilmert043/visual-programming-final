@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="classes\cart.cs" />
     <Compile Include="classes\chartSorting.cs" />
+    <Compile Include="classes\currency.cs" />
     <Compile Include="classes\lostPassword.cs" />
     <Compile Include="classes\sales.cs" />
     <Compile Include="classes\users.cs" />
@@ -81,12 +82,6 @@
     </Compile>
     <Compile Include="forms\frmAddProduct.Designer.cs">
       <DependentUpon>frmAddProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="forms\frmListCurrency.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\frmListCurrency.Designer.cs">
-      <DependentUpon>frmListCurrency.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\frmListCustomers.cs">
       <SubType>Form</SubType>
@@ -186,9 +181,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmAddProductGroup.resx">
       <DependentUpon>frmAddProductGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmListCurrency.resx">
-      <DependentUpon>frmListCurrency.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmListCustomers.resx">
       <DependentUpon>frmListCustomers.cs</DependentUpon>
